@@ -10,7 +10,7 @@
             IceCandle
           </h1>
           <p class="mt-6 text-lg md:text-xl text-slate-600 max-w-md mx-auto leading-relaxed">
-            游戏 · 绘画 · ACG · 技术<br/>在冰与烛火之间，探索创造的世界
+            点亮你的兴趣世界，探索有关绘画的精彩内容。
           </p>
         </div>
         <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f0f7ff] to-transparent pointer-events-none"></div>
@@ -21,26 +21,6 @@
           image="/images/paintings.jpg"
           link="/task/painting-showcase"
         />
-      </SectionAnimator>
-
-      <SectionAnimator id="games">
-        <GamesSection />
-      </SectionAnimator>
-
-      <SectionAnimator id="paintings">
-        <PaintingsSection />
-      </SectionAnimator>
-
-      <SectionAnimator id="acg">
-        <ACGSection />
-      </SectionAnimator>
-
-      <SectionAnimator id="music">
-        <MusicSection />
-      </SectionAnimator>
-
-      <SectionAnimator id="tech">
-        <TechSection />
       </SectionAnimator>
 
       <!-- Footer 屏幕 -->

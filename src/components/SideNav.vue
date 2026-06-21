@@ -25,11 +25,6 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const sections = [
   { id: 'hero', label: '首页' },
   { id: 'banner', label: '推荐' },
-  { id: 'games', label: '游戏' },
-  { id: 'paintings', label: '绘画' },
-  { id: 'acg', label: 'ACG' },
-  { id: 'music', label: '音乐' },
-  { id: 'tech', label: '技术' },
   { id: 'footer', label: '底部' },
 ]
 
