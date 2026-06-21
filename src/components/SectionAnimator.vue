@@ -1,5 +1,6 @@
 <template>
   <section
+    :id="id"
     ref="sectionRef"
     class="screen snap-center relative flex flex-col items-center min-h-screen"
   >
@@ -7,6 +8,7 @@
       class="z-10 w-full transition-all duration-800 ease-out"
       :class="[
         fullWidth ? '' : 'max-w-6xl',
+        centerContent ? 'flex-1 flex flex-col items-center justify-center' : '',
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       ]"
     >
@@ -21,6 +23,8 @@ import { useIntersectionObserver } from '@vueuse/core'
 
 defineProps<{
   fullWidth?: boolean
+  centerContent?: boolean
+  id?: string
 }>()
 
 const sectionRef = ref<HTMLElement>()
@@ -31,7 +35,7 @@ useIntersectionObserver(
   ([{ isIntersecting }]) => {
     if (isIntersecting) isVisible.value = true
   },
-  { threshold: 0.25 }
+  { threshold: 0.3 }
 )
 </script>
 

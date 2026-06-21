@@ -61,3 +61,26 @@ export interface Post {
   content?: string    // 文章内容（HTML）
   description?: string // 图文描述
 }
+
+export interface TaskNode {
+  id: string
+  title: string
+  description: string
+  details: string
+  status: 'pending' | 'doing' | 'done'
+  deadline?: string          // 旧字段，仍保留
+  completedAt?: string       // 新增：实际完成时间 (YYYY-MM-DD)
+  result?: {                 // 新增：完成结果
+    text?: string
+    images?: string[]        // 图片 URL 数组
+  }
+}
+
+export interface Task {
+  id: string
+  title: string
+  overallDescription: string
+  headerImage?: string      // 新增：头图
+  deadline?: string         // 新增：总体截止时间 (YYYY-MM-DD HH:mm:ss 或 ISO)
+  nodes: TaskNode[]
+}
