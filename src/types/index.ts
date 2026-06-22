@@ -41,7 +41,6 @@ export interface Category {
   name: string
   type: 'article' | 'image-text'       // 决定文章列表展示方式
   description: string
-  icon: string                         // emoji 图标
   parentCategory: 'games' | 'paintings' | 'acg' | 'tech' | 'music'
 }
 

@@ -1,94 +1,91 @@
 <template>
-  <div class="home-root relative min-h-screen bg-gradient-to-b from-[#e8f4fd] to-[#f9fcff] text-slate-800">
-    <ParticleBackground />
+  <div class="home-root min-h-screen bg-gradient-to-b from-[#e8f4fd] to-[#f9fcff] text-slate-800">
+    <PageHeader />
 
-    <main ref="mainRef" class="snap-container h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth">
-      <!-- 第一屏：主标识 -->
-      <section id="hero" class="screen flex flex-col items-center justify-center snap-center relative min-h-screen">
-        <div class="z-10 px-4 text-center">
-          <h1 class="text-6xl md:text-8xl font-display font-bold bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-500 bg-clip-text text-transparent drop-shadow-lg animate-float">
-            IceCandle
-          </h1>
-          <p class="mt-6 text-lg md:text-xl text-slate-600 max-w-md mx-auto leading-relaxed">
-            点亮你的兴趣世界，探索有关绘画的精彩内容。
-          </p>
-        </div>
-        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f0f7ff] to-transparent pointer-events-none"></div>
-      </section>
+    <main class="relative z-10">
+      <!-- 通用楼层循环 -->
+      <template v-for="floor in floors" :key="floor.id">
+        <SectionFloor v-bind="floor" />
+      </template>
 
-      <SectionAnimator id="banner" center-content>
-        <Banner
-          image="/images/paintings.jpg"
-          link="/task/painting-showcase"
-        />
-      </SectionAnimator>
-
-      <!-- Footer 屏幕 -->
-      <SectionAnimator id="footer" full-width>
-        <section class="w-full flex flex-col justify-center min-h-screen">
-          <div class="mx-auto flex-1 py-12">
-            <Banner
-            image="/images/GUMI.jpg"
-            link="https://www.bilibili.com/video/BV1mx41197L6"
-          />
-          </div>
-          <Footer />
-        </section>
-      </SectionAnimator>
-      <!-- <DynamicStatus class="fixed bottom-4 left-0 right-0 z-20" /> -->
+      <!-- 备案信息底部 -->
+      <Footer />
     </main>
-    <SideNav />
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: 'Home'
-}
-</script>
-
 <script setup lang="ts">
-import ParticleBackground from '@/components/ParticleBackground.vue'
-// import DynamicStatus from '@/components/DynamicStatus.vue'
+import SectionFloor from '@/components/SectionFloor.vue'
 import Footer from '@/components/Footer.vue'
-import GamesSection from '@/components/sections/GamesSection.vue'
-import PaintingsSection from '@/components/sections/PaintingsSection.vue'
-import ACGSection from '@/components/sections/ACGSection.vue'
-import MusicSection from '@/components/sections/MusicSection.vue'
-import TechSection from '@/components/sections/TechSection.vue'
-import SectionAnimator from '@/components/SectionAnimator.vue'
-import Banner from '@/components/Banner.vue'
-import SideNav from '@/components/SideNav.vue'
-import { ref, nextTick, onActivated } from 'vue'
-import { onBeforeRouteLeave } from 'vue-router'
+import { useHomeData } from '@/composables/useHomeData'
+import PageHeader from '@/components/PageHeader.vue'
 
-const mainRef = ref<HTMLElement | null>(null)
+const { getCategoriesByParent } = useHomeData()
 
-onBeforeRouteLeave(() => {
-  if (mainRef.value) {
-    sessionStorage.setItem('homeScrollPos', String(mainRef.value.scrollTop))
+// 准备楼层数据
+const floors = [
+  {
+    id: 'banner',
+    title: 'banner',
+    props: {
+      image: '/images/paintings.jpg',
+      link: '/task/painting',
+      alt: '特色内容推荐'
+    }
+  },
+  {
+    id: 'games',
+    title: '游戏',
+    description: '游戏相关资料记录和分享',
+    items: getCategoriesByParent('games'),
+    props: {} as Record<string, never>
+  },
+  {
+    id: 'paintings',
+    title: '绘画',
+    description: '原创角色、场景插画，笔尖下的世界',
+    items: getCategoriesByParent('paintings'),
+    props: {} as Record<string, never>
+  },
+  // {
+  //   id: 'acg',
+  //   title: 'ACG',
+  //   description: '追番记录、漫画与手办收藏',
+  //   items: getCategoriesByParent('acg'),
+  //   props: {} as Record<string, never>
+  // },
+  {
+    id: 'music',
+    title: '音乐',
+    description: '喜欢的歌曲，耳机里的世界',
+    items: getCategoriesByParent('music'),
+    props: {} as Record<string, never>
+  },
+  // {
+  //   id: 'tech',
+  //   title: '技术',
+  //   description: '前端、工程化，学习与实践的记录',
+  //   items: getCategoriesByParent('tech'),
+  //   props: {} as Record<string, never>
+  // },
+  {
+    id: 'banner',
+    title: 'banner',
+    props: {
+      image: '/images/GUMI.jpg',
+      link: 'https://www.bilibili.com/video/BV1mx41197L6',
+      alt: '特色内容推荐'
+    }
   }
-})
-
-onActivated(() => {
-  const savedPos = sessionStorage.getItem('homeScrollPos')
-  if (savedPos !== null && mainRef.value) {
-    nextTick(() => {
-      if (mainRef.value) {
-        mainRef.value.scrollTop = Number(savedPos)
-        sessionStorage.removeItem('homeScrollPos')
-      }
-    })
-  }
-})
+]
 </script>
 
 <style scoped>
-.snap-container {
-  scroll-snap-type: y proximity;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
-.screen {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 </style>

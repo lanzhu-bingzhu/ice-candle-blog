@@ -3,7 +3,6 @@
     class="group block p-5 rounded-xl bg-white/80 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
   >
     <div class="flex items-start gap-4">
-      <span class="text-3xl">{{ category.icon }}</span>
       <div>
         <h3 class="font-semibold text-slate-800 text-lg group-hover:text-blue-600 transition-colors">
           {{ category.name }}

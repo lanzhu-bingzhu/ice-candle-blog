@@ -1,13 +1,7 @@
 <template>
   <div class="flex flex-col min-h-screen bg-gradient-to-b from-[#e8f4fd] to-[#f9fcff] text-slate-800">
     <!-- 顶部：只显示 Logo -->
-    <header class="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-slate-200 px-4 py-4">
-      <div class="max-w-6xl mx-auto">
-        <router-link to="/" class="text-2xl font-display font-bold bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
-          IceCandle
-        </router-link>
-      </div>
-    </header>
+    <PageHeader />
 
     <main class="flex-1 max-w-4xl mx-auto w-full px-4 py-8" v-if="post">
       <!-- ========== 文章类型 ========== -->
@@ -79,6 +73,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHomeData } from '@/composables/useHomeData'
 import Footer from '@/components/Footer.vue'
+import PageHeader from '@/components/PageHeader.vue'
 
 const route = useRoute()
 const postId = route.params.postId as string
