@@ -11,9 +11,6 @@
         <router-link to="/" class="text-blue-500 hover:underline mt-2 inline-block">返回首页</router-link>
       </div>
 
-      <!-- 加载中 -->
-      <div v-if="loading" class="text-center py-12 text-slate-400">加载中...</div>
-
       <!-- 任务内容 -->
       <template v-if="task">
         <div class="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl overflow-hidden shadow-sm mb-8">

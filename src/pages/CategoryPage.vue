@@ -107,12 +107,12 @@ const allCategories = getAllCategories()
 const selectedCategoryId = ref(route.params.categoryId as string)
 
 // 大分类映射
-const parentCategoryMeta: Record<string, { name: string; icon: string }> = {
-  games: { name: '游戏', icon: '🎮' },
-  paintings: { name: '绘画', icon: '🎨' },
-  acg: { name: 'ACG', icon: '🍥' },
-  music: { name: '音乐', icon: '🎵' },
-  tech: { name: '技术', icon: '💻' },
+const parentCategoryMeta: Record<string, { name: string }> = {
+  games: { name: '游戏' },
+  paintings: { name: '绘画' },
+  acg: { name: 'ACG' },
+  music: { name: '音乐' },
+  tech: { name: '技术' },
 }
 
 // 所有大分类（去重排序）
@@ -120,8 +120,7 @@ const parentCategories = computed(() => {
   const keys = [...new Set(allCategories.map(c => c.parentCategory))]
   return keys.map(key => ({
     key,
-    name: parentCategoryMeta[key]?.name ?? key,
-    icon: parentCategoryMeta[key]?.icon ?? '📌'
+    name: parentCategoryMeta[key]?.name ?? key
   }))
 })
 

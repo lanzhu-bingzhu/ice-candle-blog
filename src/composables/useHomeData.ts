@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import type { Category, Post } from '@/types'
+import { useLoading } from '@/composables/useLoading'
 
 // 模拟所有小分类
 const allCategories: Category[] = [
@@ -27,11 +28,16 @@ export function useHomeData() {
   // 获取所有分类（用于标签条）
   const getAllCategories = () => allCategories
 
+  const { show, hide } = useLoading()
+
   const loading = ref(false)
+
   const fetchData = async () => {
     loading.value = true
+    show('正在获取首页数据...')
     await new Promise(resolve => setTimeout(resolve, 300))
     loading.value = false
+    hide()
   }
 
   return {
