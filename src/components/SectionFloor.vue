@@ -1,11 +1,14 @@
 <template>
-  <section class="w-full py-20">
-    <template v-if="title == 'banner'">
+  <template v-if="title == 'banner'">
+    <section class="w-full py-20">
       <Banner :image="props.image" :link="props.link" :alt="props.alt" />
-    </template>
-    <template v-else>
+    </section>
+  </template>
+  <template v-else>
+   <section class="w-full h-dvh py-20">
       <!-- 紧凑标题栏：宽度与内容一致，左标题 + 右按钮 -->
-      <div class="max-w-6xl mx-auto bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl px-6 py-5 mb-10 flex items-center justify-between">
+      <div
+        class="max-w-6xl mx-auto bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl px-6 py-5 mb-10 flex items-center justify-between">
         <div>
           <h2 class="text-3xl md:text-4xl font-bold text-white">{{ title }}</h2>
           <p class="mt-1 text-slate-300 text-lg">{{ description }}</p>
@@ -17,8 +20,8 @@
           <CategoryCard v-for="item in items" :key="item.id" :category="item" />
         </div>
       </div>
-    </template>
-  </section>
+    </section>
+  </template>
 </template>
 
 <script setup lang="ts">
