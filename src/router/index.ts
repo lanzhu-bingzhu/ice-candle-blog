@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/Home.vue'
-// import CategoryPage from '../pages/CategoryPage.vue'
-// import PostPage from '../pages/PostPage.vue'
+import CategoryPage from '../pages/CategoryPage.vue'
+import PostPage from '../pages/PostPage.vue'
 import TaskPage from '@/pages/TaskPage.vue'
 import NotFound from '@/pages/NotFound.vue'
 
