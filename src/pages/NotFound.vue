@@ -1,13 +1,7 @@
 <template>
   <div class="flex flex-col min-h-screen bg-gradient-to-b from-[#e8f4fd] to-[#f9fcff] text-slate-800">
     <!-- 顶部 Logo -->
-    <header class="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-slate-200 px-4 py-4">
-      <div class="max-w-6xl mx-auto">
-        <router-link to="/" class="text-2xl font-display font-bold bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
-          IceCandle
-        </router-link>
-      </div>
-    </header>
+    <PageHeader />
 
     <!-- 主体内容 -->
     <main class="flex-1 flex items-center justify-center px-4">
@@ -49,6 +43,7 @@
 
 <script setup lang="ts">
 import Footer from '@/components/Footer.vue'
+import PageHeader from '@/components/PageHeader.vue'
 </script>
 
 <style scoped>

@@ -1,18 +1,10 @@
 <template>
-  <footer class="w-full py-20 md:py-28 px-4 bg-white/60 backdrop-blur-sm border-t border-slate-200">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-slate-500">
-      <!-- 左侧：版权与备案 -->
+  <footer class="w-full py-20 md:py-28 px-4 bg-gradient-to-r from-slate-800 to-slate-900 border-t border-slate-700">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-slate-300">
       <div class="flex flex-col items-center md:items-start gap-1">
         <p>&copy; {{ currentYear }} IceCandle. All rights reserved.</p>
         <p>
-          <a
-            href="https://beian.miit.gov.cn/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:text-blue-500 transition-colors"
-          >
-            豫ICP备2022022883号-2
-          </a>
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-500 transition-colors">豫ICP备2022022883号-2</a>
         </p>
         <p>
           <a
@@ -25,19 +17,12 @@
           </a>
         </p>
       </div>
-
-      <!-- 中间：可选的 Slogan 或图标 -->
       <div class="flex items-center gap-1 text-blue-400">
         <span class="text-lg">❄️🕯️</span>
-        <span class="font-display font-semibold text-slate-600">IceCandle</span>
+        <span class="font-display font-semibold text-slate-200">IceCandle</span>
       </div>
-
-      <!-- 右侧：社交链接或额外信息（占位） -->
       <div class="flex gap-4">
-        <!-- <a href="#" class="hover:text-blue-500 transition-colors" title="GitHub">
-          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a> -->
-        <a href="https://space.bilibili.com/588046682" class="hover:text-blue-500 transition-colors" title="Bilibili">
+        <a href="https://space.bilibili.com/588046682" class="text-slate-400 hover:text-blue-400 transition-colors" title="Bilibili">
           <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.689.386-.947.258-.257.574-.386.947-.386zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/></svg>
         </a>
       </div>

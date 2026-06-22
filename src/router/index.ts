@@ -15,11 +15,7 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
-  scrollBehavior(to, from, savedPosition) {
-    if (to.name === 'Home') return false // 不触发路由滚动
-    return { top: 0 }
-  }
+  routes
 })
 
 export default router
