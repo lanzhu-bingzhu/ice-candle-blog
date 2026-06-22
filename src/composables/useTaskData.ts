@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import type { Task } from '@/types'
+import { useLoading } from '@/composables/useLoading'
 
 // 任务字典
 const tasks: Record<string, Task> = {
@@ -112,6 +113,8 @@ const tasks: Record<string, Task> = {
 }
 
 export function useTaskData() {
+  const { show, hide } = useLoading()
+
   const loading = ref(false)
 
   // 根据任务名称获取任务数据
@@ -127,8 +130,10 @@ export function useTaskData() {
   // 模拟异步加载
   const fetchTask = async () => {
     loading.value = true
+    show('正在获取任务数据...')
     await new Promise(resolve => setTimeout(resolve, 300))
     loading.value = false
+    hide()
   }
 
   return { getTask, getAllTaskNames, loading, fetchTask }
