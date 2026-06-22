@@ -3,28 +3,21 @@
     <!-- 顶部导航 -->
     <div class="sticky top-0 z-30">
       <!-- 第一层：Logo + 大分类 -->
-      <div class="bg-white/80 backdrop-blur-md border-b border-slate-200 px-4 py-4">
-        <div class="max-w-6xl mx-auto flex items-center justify-between">
-          <router-link to="/" class="text-2xl font-display font-bold bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
-            IceCandle
-          </router-link>
-
-          <nav class="flex gap-1 sm:gap-2">
-            <button
-              v-for="pc in parentCategories"
-              :key="pc.key"
-              @click="switchParent(pc.key)"
-              class="flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium transition-colors"
-              :class="currentParentCategory === pc.key
-                ? 'bg-blue-500 text-white shadow-sm'
-                : 'text-slate-500 hover:text-blue-600 hover:bg-blue-50'"
-            >
-              <!-- <span>{{ pc.icon }}</span> -->
-              <span class="hidden sm:inline">{{ pc.name }}</span>
-            </button>
-          </nav>
-        </div>
-      </div>
+      <PageHeader>
+        <nav class="flex gap-1 sm:gap-2">
+          <button
+            v-for="pc in parentCategories"
+            :key="pc.key"
+            @click="switchParent(pc.key)"
+            class="flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium transition-colors"
+            :class="currentParentCategory === pc.key
+              ? 'bg-blue-500 text-white shadow-sm'
+              : 'text-slate-300 hover:text-white hover:bg-white/10'"
+          >
+            <span class="hidden sm:inline">{{ pc.name }}</span>
+          </button>
+        </nav>
+      </PageHeader>
 
       <!-- 第二层：小分类标签条（仅当前大分类下有内容时显示） -->
       <div
@@ -49,9 +42,7 @@
 
     <!-- 文章列表（与之前相同） -->
     <main class="flex-1 max-w-6xl mx-auto w-full px-4 py-8">
-      <h2 class="text-2xl font-bold text-slate-700 mb-6">
-        {{ currentCategory?.icon }} {{ currentCategory?.name }}
-      </h2>
+      <h2 class="text-2xl font-bold text-slate-700 mb-6 pb-2">{{ currentCategory?.name }}</h2>
 
       <!-- 文章型列表：一行一条 -->
       <div v-if="currentCategory?.type === 'article'" class="space-y-4">
@@ -106,6 +97,7 @@ import { ref, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useHomeData } from '@/composables/useHomeData'
 import Footer from '@/components/Footer.vue'
+import PageHeader from '@/components/PageHeader.vue'
 
 const route = useRoute()
 const router = useRouter()
