@@ -1,11 +1,9 @@
 <template>
-  <template v-if="title == 'banner'">
-    <section class="w-full py-20">
-      <Banner :image="props.image" :link="props.link" :alt="props.alt" />
-    </section>
-  </template>
-  <template v-else>
-   <section class="w-full h-dvh py-20">
+  <section class="w-full py-20">
+    <template v-if="type == 'banner'">
+      <Banner :image="image" :link="link" :alt="alt" />
+    </template>
+    <template v-else>
       <!-- 紧凑标题栏：宽度与内容一致，左标题 + 右按钮 -->
       <div
         class="max-w-6xl mx-auto bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl px-6 py-5 mb-10 flex items-center justify-between">
@@ -29,13 +27,14 @@ import CategoryCard from '@/components/cards/CategoryCard.vue'
 import Banner from '@/components/Banner.vue'
 
 defineProps<{
+  floor_id: string | number
+  category_id: string | number
+  type: 'banner' | 'article' | 'image-text'
   title: string
-  description?: string
-  items?: any[]
-  props: {
-    image: string
-    link: string
-    alt: string
-  } | Record<string, never>
+  description: string
+  items: any[]
+  image: string
+  link: string
+  alt: string
 }>()
 </script>
