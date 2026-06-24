@@ -10,7 +10,7 @@
               :key="cat.category_id"
               @click="switchParent(cat.category_id)"
               class="flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium transition-colors"
-              :class="currentParentId === cat.category_id
+              :class="currentParentId == cat.category_id
               ? 'bg-blue-500 text-white shadow-sm'
               : 'text-slate-300 hover:text-white hover:bg-white/10'"
           >
@@ -27,7 +27,7 @@
               :key="cat.category_id"
               @click="switchCategory(cat.category_id)"
               class="flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors"
-              :class="selectedCategoryId === cat.category_id
+              :class="selectedCategoryId == cat.category_id
               ? 'bg-blue-500 text-white'
               : 'bg-white border border-slate-200 text-slate-600 hover:border-blue-300'"
           >
@@ -60,7 +60,7 @@
         </h2>
 
         <!-- 文章型列表：一行一条 -->
-        <div v-if="currentCategory.type === 'article'" class="space-y-4">
+        <div v-if="currentCategory.type == 'article'" class="space-y-4">
           <router-link
               v-for="post in posts"
               :key="post.post_id"
@@ -79,11 +79,11 @@
               <span class="text-blue-500">阅读 →</span>
             </div>
           </router-link>
-          <div v-if="posts.length === 0" class="text-center text-slate-400 py-12">暂无文章</div>
+          <div v-if="posts.length == 0" class="text-center text-slate-400 py-12">暂无文章</div>
         </div>
 
         <!-- 图文型列表：一行五个 -->
-        <div v-else-if="currentCategory.type === 'image-text'" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div v-else-if="currentCategory.type == 'image-text'" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           <router-link
               v-for="post in posts"
               :key="post.post_id"
@@ -99,7 +99,7 @@
               <p class="text-xs text-slate-400 mt-1" v-if="post.date">{{ post.date }}</p>
             </div>
           </router-link>
-          <div v-if="posts.length === 0" class="col-span-full text-center text-slate-400 py-12">暂无内容</div>
+          <div v-if="posts.length == 0" class="col-span-full text-center text-slate-400 py-12">暂无内容</div>
         </div>
       </template>
     </main>
@@ -126,7 +126,8 @@ const {
   loadPosts,
   getCategoryById,
   loading,
-  error
+  error,
+  loadCategoryById
 } = useHomeData()
 
 // 当前选中的分类 ID（从路由参数获取）
@@ -144,7 +145,7 @@ const currentCategory = computed(() => getCategoryById(selectedCategoryId.value)
 const currentParentId = computed(() => {
   if (!currentCategory.value) return ''
   // 如果当前分类是顶级分类，则直接返回其 id；否则返回其 parentId
-  return (currentCategory.value.parent_id === 0 || currentCategory.value.parent_id === null)
+  return (currentCategory.value.parent_id == 0 || currentCategory.value.parent_id == null)
       ? currentCategory.value.category_id
       : currentCategory.value.parent_id
 })
@@ -152,20 +153,22 @@ const currentParentId = computed(() => {
 // 加载当前分类所需的所有数据
 async function loadCategoryData(catId: string | number) {
   // 确保顶级分类已加载
-  if (topCategories.value.length === 0) {
+  if (topCategories.value.length == 0) {
     await loadTopCategories()
   }
 
-  const cat = getCategoryById(catId)
+  let cat = getCategoryById(catId)
   if (!cat) {
-    // 如果缓存中没有该分类，可能是直接访问了一个子分类 ID，尝试加载其父级分类以获取完整列表
-    // 此处简单处理：显示空状态，实际可调用单独的分类详情接口
+    cat = await loadCategoryById(catId)
+  }
+
+  if (cat == null) {
     return
   }
 
   // 确定父级 ID（大分类 ID）
   let parentId: string | number
-  if (cat.parent_id === 0 || cat.parent_id === null) {
+  if (cat.parent_id == 0 || cat.parent_id == null) {
     parentId = cat.category_id
     // 如果当前分类是顶级分类，则应该跳转到它的第一个子分类（除非它没有子分类）
     const subs = await loadSubCategories(parentId)
@@ -189,11 +192,20 @@ async function loadCategoryData(catId: string | number) {
 // 切换大分类：加载其子分类，并跳转到第一个子分类
 async function switchParent(parentId: string | number) {
   const subs = await loadSubCategories(parentId)
+  let oldCatId: string | number
+
   if (subs.length > 0) {
+    oldCatId = subs[0].category_id
     router.replace(`/category/${subs[0].category_id}`)
   } else {
     // 如果没有子分类，直接跳转到该大分类（显示其文章）
+    oldCatId = parentId
     router.replace(`/category/${parentId}`)
+  }
+
+  if (subCategories.value.length == 0 && route.params.categoryId == oldCatId) {
+    selectedCategoryId.value = oldCatId
+    await loadCategoryData(oldCatId)
   }
 }
 

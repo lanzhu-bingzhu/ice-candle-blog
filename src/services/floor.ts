@@ -1,5 +1,5 @@
 import request from './api'
-import type { FloorConfigResponse } from '@/types'
+import type { ListResponse } from '@/types'
 
 export const fetchFloors = () =>
-    request.get<any, FloorConfigResponse>('/floor').then(res => res.data)
+    request.get<any, ListResponse>('/floor').then(res => res.data)

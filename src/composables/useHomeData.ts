@@ -1,6 +1,6 @@
 import { ref, reactive } from 'vue'
 import { useLoading } from './useLoading'
-import { fetchTopCategories, fetchSubCategories } from '@/services/category'
+import { fetchTopCategories, fetchSubCategories, fetchCategoryById } from '@/services/category'
 import { fetchPostsByCategory, fetchPostById } from '@/services/post'
 import { fetchFloors } from '@/services/floor'
 import type { Category, Post, FloorConfig } from '@/types'
@@ -84,6 +84,24 @@ export function useHomeData() {
     }
   }
 
+  // 根据 ID 加载单个分类（优先从缓存获取，否则请求接口）
+  async function loadCategoryById(id: string | number): Promise<Category | null> {
+    if (categoryMap[id]) return categoryMap[id]
+    show('加载分类...')
+    try {
+      const cat = await fetchCategoryById(id)
+      if (cat) {
+        categoryMap[cat.category_id] = cat
+      }
+      return cat
+    } catch (e: any) {
+      error.value = e.message || '分类加载失败'
+      return null
+    } finally {
+      hide()
+    }
+  }
+
   // 根据大分类获取其子分类列表（从接口）
   const getSubCategoriesByParent = async (parentId: string | number) => {
     return await loadSubCategories(parentId)
@@ -106,13 +124,14 @@ export function useHomeData() {
     }
   }
 
-  const getCategoryById = (id: string | number) => categoryMap[id]
+  const getCategoryById = (id: string | number): Category | null => categoryMap[id]
 
   return {
     topCategories,
     postsMap,
     loading,
     error,
+    categoryMap,
     loadTopCategories,
     loadSubCategories,
     loadPosts,
@@ -121,6 +140,7 @@ export function useHomeData() {
     getPostsByCategory,
     floors,
     loadFloors,
-    getCategoryById
+    getCategoryById,
+    loadCategoryById
   }
 }

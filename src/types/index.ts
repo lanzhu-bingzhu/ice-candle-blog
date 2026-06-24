@@ -1,14 +1,13 @@
-// 小分类
 export interface Response {
-  data: Record<any, object>
+  data: any
   code: number
-  message?: string
+  message: string
 }
 
 export interface ListResponse {
-  data: Record<any, object>[]
+  data: Array<any>
   code: number
-  message?: string
+  message: string
 }
 
 export interface Category {
@@ -18,13 +17,6 @@ export interface Category {
   description: string
   parent_id?: number | string
 }
-
-export interface CategoryListResponse {
-  data: Category[]
-  code: number
-  message?: string
-}
-
 
 // 统一文章/图文条目
 export interface Post {
@@ -41,18 +33,6 @@ export interface Post {
   avatar?: string
   content?: string    // 文章内容（HTML）
   description?: string // 图文描述
-}
-
-export interface PostResponse {
-  data: Post
-  code: number
-  message?: string
-}
-
-export interface PostListResponse {
-  data: Post[]
-  code: number
-  message?: string
 }
 
 export interface TaskNode {
@@ -78,18 +58,6 @@ export interface Task {
   task_nodes: TaskNode[]
 }
 
-export interface TaskResponse {
-  data: Task
-  code: number
-  message?: string
-}
-
-export interface TaskListResponse {
-  data: Task[]
-  code: number
-  message?: string
-}
-
 export interface FloorConfig {
   floor_id: string | number
   category_id: string | number
@@ -100,10 +68,4 @@ export interface FloorConfig {
   image: string
   link: string
   alt: string
-}
-
-export interface FloorConfigResponse {
-  data: FloorConfig[]
-  code: number
-  message?: string
 }

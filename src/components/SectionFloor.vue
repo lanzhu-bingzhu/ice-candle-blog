@@ -18,8 +18,8 @@
           <CategoryCard v-for="item in items" :key="item.id" :category="item" />
         </div>
       </div>
-    </section>
-  </template>
+    </template>
+  </section>
 </template>
 
 <script setup lang="ts">
