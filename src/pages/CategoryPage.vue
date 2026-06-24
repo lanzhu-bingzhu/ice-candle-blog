@@ -70,7 +70,7 @@
             <div class="flex flex-wrap gap-2 mb-2" v-if="post.tags">
               <span v-for="tag in post.tags" :key="tag"
                     class="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-600 border border-blue-200"
-              >{{ tag }}</span>
+              >{{ tag.name }}</span>
             </div>
             <h3 class="text-lg font-semibold text-slate-800">{{ post.title }}</h3>
             <p class="text-sm text-slate-400 mt-2">{{ post.summary }}</p>

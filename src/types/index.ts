@@ -26,7 +26,7 @@ export interface Post {
   type: 'article' | 'image-text'  // 新增：用于区分文章和图文
   summary?: string
   date?: string
-  tags?: string[]
+  tags?: Array<any>
   cover?: string
   images?: string[]   // 图文类型多图
   author?: string
