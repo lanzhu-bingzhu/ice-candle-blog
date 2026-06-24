@@ -38,11 +38,11 @@
         <div class="space-y-4">
           <div
             v-for="node in task.task_nodes"
-            :key="node.id"
+            :key="node.task_node_id"
             class="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-xl overflow-hidden shadow-sm transition-all"
           >
             <button
-              @click="toggleNode(node.id)"
+              @click="toggleNode(node.task_node_id)"
               class="w-full flex items-center justify-between p-5 text-left hover:bg-blue-50/50 transition-colors"
             >
               <div class="flex items-center gap-3 flex-1 min-w-0">
@@ -67,7 +67,7 @@
                 </span>
                 <span
                   class="text-slate-400 transition-transform duration-300"
-                  :class="expandedNodes.has(node.id) ? 'rotate-180' : ''"
+                  :class="expandedNodes.has(node.task_node_id) ? 'rotate-180' : ''"
                 >
                   ▼
                 </span>
@@ -75,7 +75,7 @@
             </button>
 
             <div
-              v-if="expandedNodes.has(node.id)"
+              v-if="expandedNodes.has(node.task_node_id)"
               class="px-5 pb-5 border-t border-slate-100 pt-4 bg-slate-50/50 space-y-3"
             >
               <div class="prose prose-slate max-w-none text-slate-600" v-html="node.details" />
@@ -129,7 +129,6 @@ watch(() => route.params.taskName, (newName) => {
 
 // 保留原有倒计时、折叠等逻辑（基于 task）
 const now = ref(Date.now())
-let timer: number
 
 function toggleNode(id: string) {
   if (expandedNodes.value.has(id)) {
@@ -160,9 +159,5 @@ const countdownText = computed(() => {
 const countdownOver = computed(() => {
   if (!task.value?.deadline) return false
   return new Date(task.value.deadline).getTime() - now.value <= 0
-})
-
-onMounted(() => {
-  timer = window.setInterval(() => { now.value = Date.now() }, 1000)
 })
 </script>
