@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full min-h-dvh py-20">
+  <section class="w-full py-30">
     <template v-if="type == 'banner'">
       <Banner :image="image" :link="link" :alt="alt" />
     </template>
