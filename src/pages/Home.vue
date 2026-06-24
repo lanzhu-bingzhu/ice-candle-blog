@@ -4,7 +4,7 @@
 
     <main class="relative z-10">
       <!-- 通用楼层循环 -->
-      <template v-for="floor in floors" :key="floor.id">
+      <template v-for="floor in floors" :key="floor.floor_id">
         <SectionFloor v-bind="floor" />
       </template>
 
