@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`/category/${category.id}`"
+  <router-link :to="`/category/${category.category_id}`"
     class="group block p-5 rounded-xl bg-white/80 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
   >
     <div class="flex items-start gap-4">

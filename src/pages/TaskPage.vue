@@ -14,12 +14,12 @@
       <!-- 任务内容 -->
       <template v-if="task">
         <div class="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl overflow-hidden shadow-sm mb-8">
-          <img v-if="task.headerImage" :src="task.headerImage" alt="头图" class="w-full h-48 object-cover" />
+          <img v-if="task.header_image" :src="task.header_image" alt="头图" class="w-full h-48 object-cover" />
           <div class="p-6">
             <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
               <span>📋</span> {{ task.title }}
             </h2>
-            <div class="prose prose-slate max-w-none text-slate-600 mb-6" v-html="task.overallDescription" />
+            <div class="prose prose-slate max-w-none text-slate-600 mb-6" v-html="task.overall_description" />
 
             <div v-if="task.deadline" class="flex flex-wrap items-center gap-4 text-sm">
               <div class="flex items-center gap-1 text-slate-500">
@@ -37,7 +37,7 @@
         <!-- 节点列表 -->
         <div class="space-y-4">
           <div
-            v-for="node in task.nodes"
+            v-for="node in task.task_nodes"
             :key="node.id"
             class="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-xl overflow-hidden shadow-sm transition-all"
           >
@@ -79,8 +79,8 @@
               class="px-5 pb-5 border-t border-slate-100 pt-4 bg-slate-50/50 space-y-3"
             >
               <div class="prose prose-slate max-w-none text-slate-600" v-html="node.details" />
-              <div v-if="node.completedAt" class="text-sm text-green-600 flex items-center gap-1">
-                <span>✅</span> 完成于 {{ node.completedAt }}
+              <div v-if="node.completed_at" class="text-sm text-green-600 flex items-center gap-1">
+                <span>✅</span> 完成于 {{ node.completed_at }}
               </div>
               <div v-if="node.status === 'done' && node.result" class="space-y-3">
                 <div v-if="node.result.text" class="text-sm text-slate-600 bg-white p-3 rounded-lg">
@@ -107,28 +107,29 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
+import { ref, watch, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import Footer from '@/components/Footer.vue'
 import { useTaskData } from '@/composables/useTaskData'
-import type { Task } from '@/types'
-import PageHeader from '@/components/PageHeader.vue'
+import PageHeader from "@/components/PageHeader.vue";
 
 const route = useRoute()
-const { getTask, fetchTask, loading } = useTaskData()
-const task = ref<Task | undefined>(undefined)
+const { task, loading, getTask } = useTaskData()
+
 const expandedNodes = ref(new Set<string>())
 
-// 监听路由参数变化
-watch(
-  () => route.params.taskName,
-  (newName) => {
-    if (newName) {
-      task.value = getTask(newName as string)
-    }
-  },
-  { immediate: true }
-)
+const loadTask = async (name: string) => {
+  await getTask(name)
+}
+
+// 监听路由变化加载任务
+watch(() => route.params.taskName, (newName) => {
+  if (newName) loadTask(newName as string)
+}, { immediate: true })
+
+// 保留原有倒计时、折叠等逻辑（基于 task）
+const now = ref(Date.now())
+let timer: number
 
 function toggleNode(id: string) {
   if (expandedNodes.value.has(id)) {
@@ -143,9 +144,6 @@ function formatDeadline(d: string) {
   const date = new Date(d)
   return date.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })
 }
-
-const now = ref(Date.now())
-let timer: number
 
 const countdownText = computed(() => {
   if (!task.value?.deadline) return ''
@@ -165,13 +163,6 @@ const countdownOver = computed(() => {
 })
 
 onMounted(() => {
-  fetchTask()
-  timer = window.setInterval(() => {
-    now.value = Date.now()
-  }, 1000)
-})
-
-onUnmounted(() => {
-  clearInterval(timer)
+  timer = window.setInterval(() => { now.value = Date.now() }, 1000)
 })
 </script>
