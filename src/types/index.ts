@@ -1,58 +1,32 @@
-export interface Game {
-  id: string
-  title: string
-  cover: string
-  status: 'playing' | 'completed' | 'planning'
+export interface Response {
+  data: any
+  code: number
+  message: string
 }
 
-export interface Artwork {
-  id: string
-  title: string
-  image: string
-  category: string
+export interface ListResponse {
+  data: Array<any>
+  code: number
+  message: string
 }
 
-export interface ACGItem {
-  id: string
-  title: string
-  type: 'anime' | 'manga' | 'figure'
-  progress: string
-}
-
-export interface TechArticle {
-  id: string
-  title: string
-  summary: string
-  tags: string[]
-  date: string
-}
-
-export interface Music {
-  id: string
-  title: string
-  artist: string
-  album: string
-  cover: string
-}
-
-// 小分类
 export interface Category {
-  id: string
+  category_id: string | number
   name: string
   type: 'article' | 'image-text'       // 决定文章列表展示方式
   description: string
-  parentCategory: 'games' | 'paintings' | 'acg' | 'tech' | 'music'
+  parent_id?: number | string
 }
 
 // 统一文章/图文条目
 export interface Post {
-  id: string
-  categoryId: string
+  post_id: string
+  category_id: string
   title: string
   type: 'article' | 'image-text'  // 新增：用于区分文章和图文
   summary?: string
   date?: string
-  tags?: string[]
+  tags?: Array<any>
   cover?: string
   images?: string[]   // 图文类型多图
   author?: string
@@ -62,13 +36,13 @@ export interface Post {
 }
 
 export interface TaskNode {
-  id: string
+  task_node_id: string
   title: string
   description: string
   details: string
   status: 'pending' | 'doing' | 'done'
   deadline?: string          // 旧字段，仍保留
-  completedAt?: string       // 新增：实际完成时间 (YYYY-MM-DD)
+  completed_at?: string       // 新增：实际完成时间 (YYYY-MM-DD)
   result?: {                 // 新增：完成结果
     text?: string
     images?: string[]        // 图片 URL 数组
@@ -76,10 +50,22 @@ export interface TaskNode {
 }
 
 export interface Task {
-  id: string
+  task_id: string
   title: string
-  overallDescription: string
-  headerImage?: string      // 新增：头图
+  overall_description: string
+  header_image?: string      // 新增：头图
   deadline?: string         // 新增：总体截止时间 (YYYY-MM-DD HH:mm:ss 或 ISO)
-  nodes: TaskNode[]
+  task_nodes: TaskNode[]
+}
+
+export interface FloorConfig {
+  floor_id: string | number
+  category_id: string | number
+  type: 'banner' | 'article' | 'image-text'
+  title: string
+  description: string
+  items: any[]            // 由后端已拼装好的卡片数据
+  image: string
+  link: string
+  alt: string
 }
