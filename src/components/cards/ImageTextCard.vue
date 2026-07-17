@@ -1,24 +1,22 @@
 <template>
-  <router-link :to="to"
-    class="group block rounded-xl bg-white/80 border border-slate-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden"
-  >
-    <div class="aspect-[4/3] bg-gradient-to-br from-blue-50 to-sky-100 flex items-center justify-center text-4xl relative">
-      <img v-if="cover" :src="cover" :alt="title" class="absolute inset-0 w-full h-full object-cover" />
-      <span v-else class="text-4xl">{{ placeholder }}</span>
-    </div>
-    <div class="p-4">
-      <h3 class="font-semibold text-slate-800 text-base truncate">{{ title }}</h3>
-      <p class="text-sm text-slate-400 mt-1">{{ subtitle }}</p>
+  <router-link :to="`/category/${category.category_id}`" class="w-full h-full flex items-center group border-slate-200 duration-300 hover:bg-ice-50/60">
+    <div class="w-full pl-16 pr-16 mx-auto flex-1">
+      <h3 class="font-semibold text-slate-800 text-lg group-hover:text-ice-600 transition-colors">
+        {{ category.name }}
+      </h3>
+      <p class="text-sm text-slate-400 mt-1">{{ category.description }}</p>
+      <div class="mt-3 text-xs text-ice-500 opacity-0 group-hover:opacity-100 transition-opacity">
+        <span v-if="category.type_id === 1">查看分类</span>
+        <span v-if="category.type_id === 2">阅读文章</span>
+        <span v-if="category.type_id === 3">浏览图集</span>
+      </div>
     </div>
   </router-link>
 </template>
 
 <script setup lang="ts">
+import type { Category } from '@/types'
 defineProps<{
-  to: string
-  cover?: string
-  title: string
-  subtitle: string
-  placeholder?: string  // 无图片时的占位 emoji
+  category: Category
 }>()
 </script>
