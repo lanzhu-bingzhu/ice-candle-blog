@@ -14,7 +14,7 @@
         </div>
 
         <!-- 404 大标题 -->
-        <h1 class="text-8xl md:text-9xl font-extrabold bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent animate-float">
+        <h1 class="text-8xl md:text-9xl font-extrabold bg-gradient-to-r from-cyan-400 via-ice-500 to-indigo-400 bg-clip-text text-transparent animate-float">
           404
         </h1>
 
@@ -27,7 +27,7 @@
         </p>
 
         <!-- 返回按钮 -->
-        <router-link to="/" class="mt-8 inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white border border-blue-200 text-blue-600 hover:bg-blue-50 hover:border-blue-400 shadow-sm transition-all">
+        <router-link to="/" class="mt-8 inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white border border-ice-200 text-ice-600 hover:bg-ice-50 hover:border-ice-400 shadow-sm transition-all">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
           </svg>

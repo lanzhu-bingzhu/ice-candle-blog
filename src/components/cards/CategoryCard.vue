@@ -1,15 +1,22 @@
 <template>
   <router-link :to="`/category/${category.category_id}`"
-    class="group block p-5 rounded-xl bg-white/80 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+    class="group block p-5 border-t border-slate-200 duration-300"
   >
-    <div class="flex items-start gap-4">
-      <div>
-        <h3 class="font-semibold text-slate-800 text-lg group-hover:text-blue-600 transition-colors">
+    <div class="w-full flex max-w-6xl mx-auto">
+      <div class="flex flex-4/5 flex-col justify-center">
+        <h3 class="font-semibold text-slate-800 text-lg group-hover:text-ice-600 transition-colors">
           {{ category.name }}
         </h3>
         <p class="text-sm text-slate-400 mt-1">{{ category.description }}</p>
-        <div class="mt-3 flex items-center text-xs text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">
-          <span>{{ category.type === 'article' ? '阅读文章' : '浏览图集' }} →</span>
+        <div class="mt-3 flex items-center text-xs text-ice-500 opacity-0 group-hover:opacity-100 transition-opacity">
+          <span v-if="category.type_id === 1">查看分类</span>
+          <span v-if="category.type_id === 2">阅读文章</span>
+          <span v-if="category.type_id === 3">浏览图集</span>
+        </div>
+      </div>
+      <div class="flex-1/5">
+        <div class="w-80 h-80 overflow-hidden">
+          <img src="/images/GUMI.jpg" alt="" class="w-full h-auto object-cover aspect-[1/1]">
         </div>
       </div>
     </div>

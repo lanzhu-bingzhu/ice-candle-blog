@@ -8,12 +8,12 @@
       <!-- 未找到任务 -->
       <div v-if="!task && !loading" class="text-center py-12 text-slate-400">
         <p class="text-lg">任务不存在</p>
-        <router-link to="/" class="text-blue-500 hover:underline mt-2 inline-block">返回首页</router-link>
+        <router-link to="/" class="text-ice-500 hover:underline mt-2 inline-block">返回首页</router-link>
       </div>
 
       <!-- 任务内容 -->
       <template v-if="task">
-        <div class="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-2xl overflow-hidden shadow-sm mb-8">
+        <div class="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-lg overflow-hidden shadow-sm mb-8">
           <img v-if="task.header_image" :src="task.header_image" alt="头图" class="w-full h-48 object-cover" />
           <div class="p-6">
             <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
@@ -26,7 +26,7 @@
                 <span>📅</span>
                 <span>目标完成时间：{{ formatDeadline(task.deadline) }}</span>
               </div>
-              <div class="flex items-center gap-1" :class="countdownOver ? 'text-green-600' : 'text-blue-600'">
+              <div class="flex items-center gap-1" :class="countdownOver ? 'text-green-600' : 'text-ice-600'">
                 <span>⏳</span>
                 <span>{{ countdownText }}</span>
               </div>
@@ -39,11 +39,11 @@
           <div
             v-for="node in task.task_nodes"
             :key="node.task_node_id"
-            class="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-xl overflow-hidden shadow-sm transition-all"
+            class="bg-white/80 backdrop-blur-sm border border-slate-200 rounded-lg overflow-hidden shadow-sm transition-all"
           >
             <button
               @click="toggleNode(node.task_node_id)"
-              class="w-full flex items-center justify-between p-5 text-left hover:bg-blue-50/50 transition-colors"
+              class="w-full flex items-center justify-between p-5 text-left hover:bg-ice-50/50 transition-colors"
             >
               <div class="flex items-center gap-3 flex-1 min-w-0">
                 <span class="text-xl flex-shrink-0">

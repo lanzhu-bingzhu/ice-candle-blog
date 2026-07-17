@@ -12,10 +12,14 @@ export interface ListResponse {
 
 export interface Category {
   category_id: string | number
+  parent_id: string | number
+  type_id: number
   name: string
-  type: 'article' | 'image-text'       // 决定文章列表展示方式
   description: string
-  parent_id?: number | string
+  is_show: number
+  created_at: string
+  updated_at: string
+  children?: Category[]
 }
 
 // 统一文章/图文条目
