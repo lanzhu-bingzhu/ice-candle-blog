@@ -1,35 +1,39 @@
 <template>
   <section class="w-full">
-    <template v-if="type_id == 1">
+    <template v-if="type_id != 3">
       <div class="bg-ice-900 py-16 flex items-center justify-between">
-        <div class="max-w-6xl mx-auto w-4/6">
-          <h3 class="text-xl font-bold text-white mb-2">{{ category.name }}</h3>
-          <p class="mt-1 text-slate-300 text-sm">{{ category.description }}</p>
+        <div class="w-2/3 max-w-6xl mx-auto">
+          <h3 class="text-xl font-bold text-white mb-2">{{ title }}</h3>
+          <p class="mt-1 text-slate-300 text-sm">{{ description }}</p>
         </div>
       </div>
-      <div class="bg-white/80">
-        <CategoryCard v-for="item in category.children" :key="category_id" :category="item" />
+    </template>
+    <template v-if="type_id == 1">
+      <div class="w-2/3 max-w-6xl mx-auto flex">
+        <div class="w-2/5 flex items-center">
+          <div>
+            <h3 class="text-3xl font-bold text-ice-900 mb-2">{{ category.name }}</h3>
+            <p class="mt-1 text-ice-600 text-xl">{{ category.description }}</p>
+          </div>
+        </div>
+        <div class="w-3/5">
+          <CategoryCard v-for="item in category.children" :key="category_id" :category="item" />
+        </div>
       </div>
     </template>
     <template v-if="type_id == 2">
-      <div class="bg-ice-900 py-16 flex items-center justify-between">
-        <div class="max-w-6xl mx-auto w-4/6">
-          <h3 class="text-xl font-bold text-white mb-2">{{ category.name }}</h3>
-          <p class="mt-1 text-slate-300 text-sm">{{ category.description }}</p>
+      <div class="py-16 flex items-center justify-between">
+        <div class="w-2/3 max-w-6xl mx-auto">
+          <h3 class="text-xl font-bold text-ice-900 mb-2">{{ category.name }}</h3>
+          <p class="mt-1 text-ice-600 text-sm">{{ category.description }}</p>
         </div>
       </div>
-      <div class="bg-white/80">
-        <div class="flex w-full h-3/4 items-center justify-center relative overflow-hidden">
-          <img v-if="image" :src="image" :alt="title" class="min-w-dvw h-auto object-cover aspect-[21/9]" />
-          <span v-else class="text-4xl">{{ category.description }}</span>
-          <div class="absolute h-full inset-0 w-1/2 bg-white/80 flex flex-col">
-            <template v-for="(item, index) in category.children" :key="category_id">
-              <div v-if="index < 4" class="flex-1">
-                <ImageTextCard :category="item" />
-              </div>
-            </template>
+      <div class="w-2/3 max-w-6xl mx-auto">
+        <template v-for="item in category.children" :key="category_id">
+          <div class="grid grid-cols-3">
+            <ImageTextCard :category="item" />
           </div>
-        </div>
+        </template>
       </div>
     </template>
     <template v-if="type_id == 3">

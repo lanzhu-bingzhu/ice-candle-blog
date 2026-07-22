@@ -1,7 +1,5 @@
 <template>
-  <router-link :to="`/category/${category.category_id}`"
-    class="group block p-5 border-t border-slate-200 duration-300"
-  >
+  <router-link :to="`/category/${category.category_id}`" class="group block p-5 border-slate-200 duration-300">
     <div class="w-full flex max-w-6xl mx-auto">
       <div class="flex flex-4/5 flex-col justify-center">
         <h3 class="font-semibold text-slate-800 text-lg group-hover:text-ice-600 transition-colors">
@@ -16,7 +14,7 @@
       </div>
       <div class="flex-1/5">
         <div class="w-80 h-80 overflow-hidden">
-          <img src="/images/GUMI.jpg" alt="" class="w-full h-auto object-cover aspect-[1/1]">
+          <img :src="category.cover" :alt="category.name" class="w-full h-auto object-cover aspect-[1/1]">
         </div>
       </div>
     </div>

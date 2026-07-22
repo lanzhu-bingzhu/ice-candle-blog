@@ -17,6 +17,7 @@ export interface Category {
   name: string
   description: string
   is_show: number
+  cover: string
   created_at: string
   updated_at: string
   children?: Category[]
@@ -65,11 +66,12 @@ export interface Task {
 export interface FloorConfig {
   floor_id: string | number
   category_id: string | number
-  type: 'banner' | 'article' | 'image-text'
+  type_id: number
   title: string
   description: string
-  items: any[]            // 由后端已拼装好的卡片数据
+  items: any[]
   image: string
   link: string
-  alt: string
+  alt: string,
+  category: Category
 }

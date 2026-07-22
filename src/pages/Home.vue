@@ -3,6 +3,13 @@
     <PageHeader />
 
     <main class="relative z-10">
+      <section class="w-full">
+        <div class="overflow-hidden duration-500 w-full h-[80dvh] bg-ice-900 flex items-center">
+          <div class="w-2/3 max-w-6xl mx-auto">
+            <span class="text-8xl font-extrabold tracking-tight text-ice-200">IceCandle</span>
+          </div>
+        </div>
+      </section>
       <!-- 通用楼层循环 -->
       <template v-for="floor in floors" :key="floor.floor_id">
         <SectionFloor v-bind="floor" />
