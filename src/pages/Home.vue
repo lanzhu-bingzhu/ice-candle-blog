@@ -5,15 +5,18 @@
     <main class="relative z-10">
       <section class="w-full">
         <div class="overflow-hidden duration-500 w-full h-[80dvh] bg-ice-900 flex items-center">
-          <div class="w-2/3 max-w-6xl mx-auto">
+          <div class="w-[1200px] mx-auto">
             <span class="text-8xl font-extrabold tracking-tight text-ice-200">IceCandle</span>
           </div>
         </div>
       </section>
+
+      <CategoryNavFloor/>
+
       <!-- 通用楼层循环 -->
-      <template v-for="floor in floors" :key="floor.floor_id">
-        <SectionFloor v-bind="floor" />
-      </template>
+<!--      <template v-for="floor in floors" :key="floor.floor_id">-->
+<!--        <SectionFloor v-bind="floor" />-->
+<!--      </template>-->
 
       <!-- 备案信息底部 -->
       <Footer />
@@ -22,17 +25,18 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import SectionFloor from '@/components/SectionFloor.vue'
+// import { onMounted } from 'vue'
+// import SectionFloor from '@/components/SectionFloor.vue'
 import Footer from '@/components/Footer.vue'
-import { useHomeData } from '@/composables/useHomeData'
+// import { useHomeData } from '@/composables/useHomeData'
 import PageHeader from '@/components/PageHeader.vue'
+import CategoryNavFloor from "@/components/floors/CategoryNavFloor.vue";
 
-const { floors, loadFloors } = useHomeData()
-
-onMounted(() => {
-  loadFloors()
-})
+// const { floors, loadFloors } = useHomeData()
+//
+// onMounted(() => {
+//   loadFloors()
+// })
 </script>
 
 <style scoped>

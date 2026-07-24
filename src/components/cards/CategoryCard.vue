@@ -12,11 +12,6 @@
           <span v-if="category.type_id === 3">浏览图集</span>
         </div>
       </div>
-      <div class="flex-1/5">
-        <div class="w-80 h-80 overflow-hidden">
-          <img :src="category.cover" :alt="category.name" class="w-full h-auto object-cover aspect-[1/1]">
-        </div>
-      </div>
     </div>
   </router-link>
 </template>
