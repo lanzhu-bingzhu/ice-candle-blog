@@ -4,14 +4,14 @@
 
     <main class="z-10">
       <section class="w-full">
-        <div class="overflow-hidden duration-500 w-full h-[44rem] bg-dark-800 flex">
+        <div class="overflow-hidden duration-500 w-full h-[80dvh] bg-dark-800 flex">
           <div class="flex-1">
             <img src="/images/header-floor.jpg" alt="alt" class="w-full h-auto object-cover aspect-[8/21]" />
           </div>
           <div class="flex-2 ml-[30%] flex items-center justify-center">
             <div>
               <div class="text-ice-50 p-8">
-                <h1 class="text-8xl font-extrabold tracking-tight tracking-widest"><span class="text-ice-600">ICE</span> CANDLE</h1>
+                <h1 class="text-8xl font-extrabold tracking-widest"><span class="text-ice-600">ICE</span> CANDLE</h1>
                 <p class="text-2xl font-bold pt-6 tracking-[.9em] pl-[0.25em]">冰烛的个人网站</p>
               </div>
               <div class="text-2xl text-ice-50/80 p-8">
@@ -30,13 +30,15 @@
       <section class="w-full">
         <div class="p-16">
           <div class="w-full flex">
-            <div class="flex-4">
+            <div class="flex-5">
               <Banner image="/images/GUMI.jpg" link="https://www.bilibili.com/video/BV1mx41197L6" aspect="aspect-[16/9]" />
             </div>
-            <div class="flex-1 relative">
-              <div class="w-full h-10/16"></div>
-              <div class="w-full h-2/16 border-r-16 border-ice-600"></div>
-              <h2 class="text-3xl font-bold absolute bottom-0 right-0">Banner <span class="text-ice-600">NO.1</span></h2>
+            <div class="w-full flex-2 flex items-center justify-center">
+              <div>
+                <h2 class="text-4xl font-bold">Banner <span class="text-ice-600">NO.1</span></h2>
+                <h3 class="text-2xl text-dark/70 mt-4">GUMI</h3>
+                <p class="text-xl text-dark/40">GUMI Music Recommendation</p>
+              </div>
             </div>
           </div>
         </div>
@@ -46,7 +48,7 @@
         <div class="w-full flex">
           <div class="flex-1">
             <div class="my-16 ml-44 py-32">
-              <h2 class="text-3xl pb-16">
+              <h2 class="text-4xl pb-16">
                 <span class="text-ice-600 font-bold pr-2">2.</span>
                 <span>Content Navigation</span>
               </h2>
