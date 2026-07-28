@@ -17,7 +17,6 @@ export interface Category {
   name: string
   description: string
   is_show: number
-  cover: string
   created_at: string
   updated_at: string
   children?: Category[]

@@ -2,41 +2,119 @@
   <div class="home-root min-h-screen bg-gradient-to-b from-[#e8f4fd] to-[#f9fcff] text-slate-800">
     <PageHeader />
 
-    <main class="relative z-10">
+    <main class="z-10">
       <section class="w-full">
-        <div class="overflow-hidden duration-500 w-full h-[80dvh] bg-ice-900 flex items-center">
-          <div class="w-[1200px] mx-auto">
-            <span class="text-8xl font-extrabold tracking-tight text-ice-200">IceCandle</span>
+        <div class="overflow-hidden duration-500 w-full h-[44rem] bg-dark-800 flex">
+          <div class="flex-1">
+            <img src="/images/header-floor.jpg" alt="alt" class="w-full h-auto object-cover aspect-[8/21]" />
+          </div>
+          <div class="flex-2 ml-[30%] flex items-center justify-center">
+            <div>
+              <div class="text-ice-50 p-8">
+                <h1 class="text-8xl font-extrabold tracking-tight tracking-widest"><span class="text-ice-600">ICE</span> CANDLE</h1>
+                <p class="text-2xl font-bold pt-6 tracking-[.9em] pl-[0.25em]">冰烛的个人网站</p>
+              </div>
+              <div class="text-2xl text-ice-50/80 p-8">
+                <p>
+                  <span><span class="text-ice-400/60">Ⅰ.</span> Recommendations</span>
+                  <span class="pl-4"><span class="text-ice-400/60">Ⅱ.</span> Content Navigation</span>
+                  <span class="pl-4"><span class="text-ice-400/60">Ⅲ.</span> Posts</span>
+                  <span class="pl-4"><span class="text-ice-400/60">Ⅳ.</span> Programming</span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <CategoryNavFloor/>
+      <section class="w-full">
+        <div class="p-16">
+          <div class="w-full flex">
+            <div class="flex-4">
+              <Banner image="/images/GUMI.jpg" link="https://www.bilibili.com/video/BV1mx41197L6" aspect="aspect-[16/9]" />
+            </div>
+            <div class="flex-1 relative">
+              <div class="w-full h-10/16"></div>
+              <div class="w-full h-2/16 border-r-16 border-ice-600"></div>
+              <h2 class="text-3xl font-bold absolute bottom-0 right-0">Banner <span class="text-ice-600">NO.1</span></h2>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="w-full">
+        <div class="w-full flex">
+          <div class="flex-1">
+            <div class="my-16 ml-44 py-32">
+              <h2 class="text-3xl pb-16">
+                <span class="text-ice-600 font-bold pr-2">2.</span>
+                <span>Content Navigation</span>
+              </h2>
+              <ul class="w-[80%] mx-auto">
+                <template v-for="item in topCategories">
+                  <li class="border-b-1 p-4">
+                    <p class="text-xl text-dark leading-10">{{ item.name }}</p>
+                    <p class="text-sm text-dark/70">
+                      <span>{{ item.description }}</span>
+                      <span class="float-right text-dark/40 hover:text-ice-600/70">
+                        <router-link :to="`/category/${item.category_id}`">
+                          查看分类
+                        </router-link>
+                      </span>
+                    </p>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
+          <div class="flex-1">
+            <div class="ml-[20%] h-full">
+              <div class="w-full h-[50%] bg-ice-500 overflow-hidden">
+                <img src="/images/04.jpg" alt="alt" class="w-full object-cover aspect-[1/1]" />
+              </div>
+              <div class="w-full h-[10%] bg-candle-400"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="w-full">
+        <div>
+
+        </div>
+      </section>
 
       <!-- 通用楼层循环 -->
 <!--      <template v-for="floor in floors" :key="floor.floor_id">-->
 <!--        <SectionFloor v-bind="floor" />-->
 <!--      </template>-->
 
-      <!-- 备案信息底部 -->
-      <Footer />
     </main>
+
+    <!-- 备案信息底部 -->
+    <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
-// import { onMounted } from 'vue'
+import { onMounted } from 'vue'
 // import SectionFloor from '@/components/SectionFloor.vue'
 import Footer from '@/components/Footer.vue'
-// import { useHomeData } from '@/composables/useHomeData'
+import { useHomeData } from '@/composables/useHomeData'
 import PageHeader from '@/components/PageHeader.vue'
-import CategoryNavFloor from "@/components/floors/CategoryNavFloor.vue";
+import Banner from "@/components/Banner.vue";
 
-// const { floors, loadFloors } = useHomeData()
-//
-// onMounted(() => {
-//   loadFloors()
-// })
+const { loadTopCategories, topCategories } = useHomeData()
+
+async function loadTopCategoryData() {
+  if (topCategories.value.length == 0) {
+    await loadTopCategories()
+  }
+}
+
+onMounted(() => {
+  loadTopCategoryData()
+})
 </script>
 
 <style scoped>
