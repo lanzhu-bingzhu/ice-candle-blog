@@ -27,88 +27,13 @@
         </div>
       </section>
 
-      <section class="w-full">
-        <div class="w-full flex">
-          <div class="flex-1">
-            <div class="my-16 ml-44 py-32">
-              <h2 class="text-4xl pb-16">
-                <span class="text-ice-600 font-bold pr-2">1.</span>
-                <span>Content Navigation</span>
-              </h2>
-              <ul class="w-[80%] mx-auto">
-                <template v-for="item in topCategories">
-                  <li class="border-b-1 p-4">
-                    <p class="text-xl text-dark leading-10">{{ item.name }}</p>
-                    <p class="text-sm text-dark/70">
-                      <span>{{ item.description }}</span>
-                      <span class="float-right text-dark/40 hover:text-ice-600/70">
-                        <router-link :to="`/category/${item.category_id}`">
-                          查看分类
-                        </router-link>
-                      </span>
-                    </p>
-                  </li>
-                </template>
-              </ul>
-            </div>
-          </div>
-          <div class="flex-1">
-            <div class="ml-[20%] h-full">
-              <div class="w-full h-[50%] bg-ice-500 overflow-hidden">
-                <img src="/images/04.jpg" alt="alt" class="w-full object-cover aspect-[1/1]" />
-              </div>
-              <div class="w-full h-[10%] bg-candle-400"></div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <ContentNavigation :topCategories="topCategories" />
 
-      <section class="w-full">
-        <div class="p-16">
-          <div class="w-full flex">
-            <div class="flex-3">
-<!--              <Banner image="/images/GUMI.jpg" link="https://www.bilibili.com/video/BV1mx41197L6" aspect="aspect-[16/9]" />-->
-              <div class="w-full relative">
-                <img src="/images/GUMI.jpg" alt="alt" class="w-full h-auto object-cover aspect-[16/9]" />
-              </div>
-            </div>
-            <div class="flex-1">
-              <div class="w-full h-6/10 vertical-text text-left relative">
-                <span class="mb-16 absolute bottom-0 right-0">
-                  <span class="block text-2xl text-dark/70 mt-4">VOCALOID & UTAU</span>
-                  <span class="block text-xl text-dark/40">Music Recommendation</span>
-                </span>
-              </div>
-              <div class="h-1/10 border-r-16 border-ice-600"></div>
-              <div class="h-3/10 flex items-center justify-center">
-                <div>
-                  <h2 class="text-4xl font-bold">
-                    <span>Content</span><br>
-                    <span>Recommendations</span><br>
-                    <span class="text-ice-600">NO.2</span>
-                  </h2>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <!-- <Recommendations /> -->
 
-      <section class="w-full">
-        <div class="flex px-32 py-16">
-          <div class="min-h-[80dvh] flex-1 py-8">
-            <h2 class="text-[8rem] leading-normal font-bold vertical-text">Blog post display</h2>
-          </div>
-          <div class="flex-1">
-            <div class="p-16">
-              <h3 class="text-4xl font-bold tracking-widest">List</h3>
-              <ul class="px-8 py-16">
-                <li>占位数据</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+      <RecommendationsV2 />
+
+      <Posts :posts="[]" />
 
       <!-- 通用楼层循环 -->
 <!--      <template v-for="floor in floors" :key="floor.floor_id">-->
@@ -127,6 +52,10 @@ import { onMounted } from 'vue'
 import Footer from '@/components/Footer.vue'
 import { useHomeData } from '@/composables/useHomeData'
 import PageHeader from '@/components/PageHeader.vue'
+import ContentNavigation from '@/components/floors/ContentNavigation.vue'
+// import Recommendations from '@/components/floors/Recommendations.vue'
+import RecommendationsV2 from '@/components/floors/RecommendationsV2.vue'
+import Posts from '@/components/floors/Posts.vue'
 // import Banner from "@/components/Banner.vue";
 
 const { loadTopCategories, topCategories } = useHomeData()
