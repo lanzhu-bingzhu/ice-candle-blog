@@ -348,3 +348,9 @@ code {
   scrollbar-width: thin;
   scrollbar-color: rgba(56, 189, 248, 0.5) rgba(0, 0, 0, 0.05);
 }
+
+.vertical-text {
+  writing-mode: sideways-lr;
+  -webkit-writing-mode: sideways-lr;
+  text-orientation: mixed;
+}

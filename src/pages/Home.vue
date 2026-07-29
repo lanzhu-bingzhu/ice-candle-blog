@@ -8,7 +8,7 @@
           <div class="flex-1">
             <img src="/images/header-floor.jpg" alt="alt" class="w-full h-auto object-cover aspect-[8/21]" />
           </div>
-          <div class="flex-2 ml-[30%] flex items-center justify-center">
+          <div class="flex-2 ml-[25%] flex items-center justify-center">
             <div>
               <div class="text-ice-50 p-8">
                 <h1 class="text-8xl font-extrabold tracking-widest"><span class="text-ice-600">ICE</span> CANDLE</h1>
@@ -16,28 +16,11 @@
               </div>
               <div class="text-2xl text-ice-50/80 p-8">
                 <p>
-                  <span><span class="text-ice-400/60">Ⅰ.</span> Recommendations</span>
-                  <span class="pl-4"><span class="text-ice-400/60">Ⅱ.</span> Content Navigation</span>
+                  <span><span class="text-ice-400/60">Ⅰ.</span> Content Navigation</span>
+                  <span class="pl-4"><span class="text-ice-400/60">Ⅱ.</span> Recommendations</span>
                   <span class="pl-4"><span class="text-ice-400/60">Ⅲ.</span> Posts</span>
                   <span class="pl-4"><span class="text-ice-400/60">Ⅳ.</span> Programming</span>
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="w-full">
-        <div class="p-16">
-          <div class="w-full flex">
-            <div class="flex-5">
-              <Banner image="/images/GUMI.jpg" link="https://www.bilibili.com/video/BV1mx41197L6" aspect="aspect-[16/9]" />
-            </div>
-            <div class="w-full flex-2 flex items-center justify-center">
-              <div>
-                <h2 class="text-4xl font-bold">Banner <span class="text-ice-600">NO.1</span></h2>
-                <h3 class="text-2xl text-dark/70 mt-4">GUMI</h3>
-                <p class="text-xl text-dark/40">GUMI Music Recommendation</p>
               </div>
             </div>
           </div>
@@ -49,7 +32,7 @@
           <div class="flex-1">
             <div class="my-16 ml-44 py-32">
               <h2 class="text-4xl pb-16">
-                <span class="text-ice-600 font-bold pr-2">2.</span>
+                <span class="text-ice-600 font-bold pr-2">1.</span>
                 <span>Content Navigation</span>
               </h2>
               <ul class="w-[80%] mx-auto">
@@ -81,8 +64,49 @@
       </section>
 
       <section class="w-full">
-        <div>
+        <div class="p-16">
+          <div class="w-full flex">
+            <div class="flex-3">
+<!--              <Banner image="/images/GUMI.jpg" link="https://www.bilibili.com/video/BV1mx41197L6" aspect="aspect-[16/9]" />-->
+              <div class="w-full relative">
+                <img src="/images/GUMI.jpg" alt="alt" class="w-full h-auto object-cover aspect-[16/9]" />
+              </div>
+            </div>
+            <div class="flex-1">
+              <div class="w-full h-6/10 vertical-text text-left relative">
+                <span class="mb-16 absolute bottom-0 right-0">
+                  <span class="block text-2xl text-dark/70 mt-4">VOCALOID & UTAU</span>
+                  <span class="block text-xl text-dark/40">Music Recommendation</span>
+                </span>
+              </div>
+              <div class="h-1/10 border-r-16 border-ice-600"></div>
+              <div class="h-3/10 flex items-center justify-center">
+                <div>
+                  <h2 class="text-4xl font-bold">
+                    <span>Content</span><br>
+                    <span>Recommendations</span><br>
+                    <span class="text-ice-600">NO.2</span>
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <section class="w-full">
+        <div class="flex px-32 py-16">
+          <div class="min-h-[80dvh] flex-1 py-8">
+            <h2 class="text-[8rem] leading-normal font-bold vertical-text">Blog post display</h2>
+          </div>
+          <div class="flex-1">
+            <div class="p-16">
+              <h3 class="text-4xl font-bold tracking-widest">List</h3>
+              <ul class="px-8 py-16">
+                <li>占位数据</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -93,7 +117,6 @@
 
     </main>
 
-    <!-- 备案信息底部 -->
     <Footer />
   </div>
 </template>
@@ -104,7 +127,7 @@ import { onMounted } from 'vue'
 import Footer from '@/components/Footer.vue'
 import { useHomeData } from '@/composables/useHomeData'
 import PageHeader from '@/components/PageHeader.vue'
-import Banner from "@/components/Banner.vue";
+// import Banner from "@/components/Banner.vue";
 
 const { loadTopCategories, topCategories } = useHomeData()
 
