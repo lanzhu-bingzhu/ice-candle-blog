@@ -10,7 +10,7 @@
             </h2>
             <ul class="w-full mx-auto px-8">
               <template v-for="item in topCategories">
-                <li class="border-b-1 p-4">
+                <li class="border-b p-4">
                   <p class="text-xl text-dark leading-10">{{ item.name }}</p>
                   <p class="text-sm text-dark/70">
                     <span>{{ item.description }}</span>
@@ -26,7 +26,7 @@
         <div class="flex-1">
           <div class="ml-[20%] h-full">
             <div class="w-full h-[50%] bg-ice-500 overflow-hidden">
-              <img src="/images/04.jpg" alt="alt" class="w-full object-cover aspect-[1/1]" />
+              <img src="/images/04.jpg" alt="alt" class="w-full object-cover aspect-square" />
             </div>
             <div class="w-full h-[10%] bg-candle-400"></div>
           </div>

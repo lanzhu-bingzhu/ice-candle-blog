@@ -6,19 +6,19 @@
           <div class="flex-2 flex">
             <div class="flex-1">
               <div class="w-full h-3/4 overflow-hidden border-4 border-[#f0f7ff]">
-                <img src="/images/miku.jpg" alt="alt" class="w-full h-full object-cover aspect-[3/4]" />
+                <img src="/images/miku.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
               </div>
               <div class="w-full h-1/4 flex">
                 <div class="flex-1 h-full bg-ice-500 border-4 border-[#f0f7ff]"></div>
                 <div class="flex-1 h-full overflow-hidden border-4 border-[#f0f7ff]">
-                  <img src="/images/GUMI.jpg" alt="alt" class="w-full h-full object-cover aspect-[1/1]" />
+                  <img src="/images/GUMI.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
                 </div>
               </div>
             </div>
             <div class="flex-1">
               <div class="w-full h-1/5 bg-ice-500 border-4 border-[#f0f7ff]"></div>
               <div class="w-full h-3/5 overflow-hidden border-4 border-[#f0f7ff]">
-                <img src="/images/teto.jpg" alt="alt" class="w-full h-full object-cover aspect-[3/4]" />
+                <img src="/images/teto.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
               </div>
               <div class="w-full h-1/5 bg-candle-400 border-4 border-[#f0f7ff]"></div>
             </div>
@@ -33,7 +33,7 @@
             <div class="h-1/10 border-r-16 border-ice-500"></div>
             <div class="h-3/10 flex items-center justify-center">
               <div>
-                <h2 class="text-4xl font-bold leading-[3rem]">
+                <h2 class="text-4xl font-bold leading-12">
                   <span>Content</span><br>
                   <span>Recommendations</span><br>
                   <span class="text-ice-600">NO.2</span>

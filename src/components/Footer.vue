@@ -1,5 +1,5 @@
 <template>
-  <footer class="w-full py-20 md:py-28 px-4 bg-gradient-to-r from-dark-800 to-dark-900">
+  <footer class="w-full py-20 md:py-28 px-4 bg-linear-to-r from-dark-800 to-dark-900">
     <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-slate-300">
       <div class="flex flex-col items-center md:items-start gap-1">
         <p>&copy; {{ currentYear }} IceCandle. All rights reserved.</p>

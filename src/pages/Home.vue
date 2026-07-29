@@ -1,12 +1,12 @@
 <template>
-  <div class="home-root min-h-screen bg-gradient-to-b from-[#e8f4fd] to-[#f9fcff] text-slate-800">
+  <div class="home-root min-h-screen bg-linear-to-b from-[#e8f4fd] to-[#f9fcff] text-slate-800">
     <PageHeader />
 
     <main class="z-10">
       <section class="w-full">
         <div class="overflow-hidden duration-500 w-full h-[80dvh] bg-dark-800 flex">
           <div class="flex-1">
-            <img src="/images/header-floor.jpg" alt="alt" class="w-full h-auto object-cover aspect-[8/21]" />
+            <img src="/images/header-floor.jpg" alt="alt" class="w-full h-auto object-cover aspect-8/21" />
           </div>
           <div class="flex-2 ml-[25%] flex items-center justify-center">
             <div>
