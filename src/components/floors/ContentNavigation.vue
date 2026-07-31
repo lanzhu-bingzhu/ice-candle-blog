@@ -9,13 +9,13 @@
               <span>Content Navigation</span>
             </h2>
             <ul class="w-full mx-auto px-8">
-              <template v-for="item in topCategories">
+              <template v-for="item in props.topCategories">
                 <li class="border-b p-4">
                   <p class="text-xl text-dark leading-10">{{ item.name }}</p>
                   <p class="text-sm text-dark/70">
                     <span>{{ item.description }}</span>
                     <span class="float-right text-dark/40 hover:text-ice-600/70">
-                      <router-link :to="`/category/${item.category_id}`">查看分类</router-link>
+                      <router-link :to="`/catalogue/${item.category_id}`">查看分类</router-link>
                     </span>
                   </p>
                 </li>

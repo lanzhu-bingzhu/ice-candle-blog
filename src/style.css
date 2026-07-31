@@ -354,3 +354,11 @@ code {
   -webkit-writing-mode: sideways-lr;
   text-orientation: mixed;
 }
+
+.toc-dots {
+  margin: 0 0.5rem;
+  background: radial-gradient(circle at 50% 50%, #333333 1.5px, transparent 2px);
+  background-size: 0.8rem 1.2em;
+  background-repeat: repeat-x;
+  background-position: 0 50%;
+}

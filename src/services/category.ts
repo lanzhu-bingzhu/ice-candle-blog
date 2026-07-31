@@ -2,6 +2,9 @@ import request from './api'
 import type { Response, ListResponse } from '@/types'
 
 // 获取顶级分类（parent_id = 0）
+export const fetchAllCategories = (params: Record<string, any>) =>
+    request.get<any, ListResponse>('/category', { params: params }).then(res => res.data)
+
 export const fetchTopCategories = () =>
     request.get<any, ListResponse>('/category').then(res => res.data)
 

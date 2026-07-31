@@ -38,13 +38,13 @@
       <section>
         <div class="container mx-auto">
           <div class="px-16">
-            <div class="w-full flex py-8">
-              <div class="flex-5 p-16">
+            <div class="w-full flex py-16">
+              <div class="flex-5 py-16">
                 <div class="pb-8">
                   <h2 class="text-4xl font-bold">Hatsune Miku</h2>
                   <p class="text-dark/40">The best of Hatsune Miku form Ice Candle</p>
                 </div>
-                <ul class="w-3/4 px-8">
+                <ul class="full px-8">
                   <li class="border-b p-4">
                     <p class="text-xl text-dark leading-10">占位内容</p>
                     <p class="text-sm text-dark/70">
@@ -56,20 +56,20 @@
                   </li>
                 </ul>
               </div>
-              <div class="flex-4 overflow-hidden bg-ice-600">
+              <div class="flex-6 overflow-hidden bg-ice-600">
                 <img src="/images/miku.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
               </div>
             </div>
-            <div class="w-full flex py-8">
-              <div class="flex-4 overflow-hidden bg-candle-500">
+            <div class="w-full flex py-16">
+              <div class="flex-6 overflow-hidden bg-candle-500">
                 <img src="/images/teto.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
               </div>
-              <div class="flex-5 p-16">
+              <div class="flex-5 py-16">
                 <div class="text-right pb-8">
                   <h2 class="text-4xl font-bold">Kasane Teto</h2>
                   <p class="text-dark/40">The best of Kasane Teto form Ice Candle</p>
                 </div>
-                <ul class="w-3/4 px-8 float-right">
+                <ul class="w-full px-8 float-right">
                   <li class="border-b p-4">
                     <p class="text-xl text-dark leading-10">占位内容</p>
                     <p class="text-sm text-dark/70">
@@ -82,13 +82,13 @@
                 </ul>
               </div>
             </div>
-            <div class="w-full flex py-8">
-              <div class="flex-5 p-16">
+            <div class="w-full flex py-16">
+              <div class="flex-5 py-16">
                 <div class="pb-8">
                   <h2 class="text-4xl font-bold">GUMI</h2>
                   <p class="text-dark/40">The best of GUMI form Ice Candle</p>
                 </div>
-                <ul class="w-3/4 px-8">
+                <ul class="full px-8">
                   <li class="border-b p-4">
                     <p class="text-xl text-dark leading-10">占位内容</p>
                     <p class="text-sm text-dark/70">
@@ -100,7 +100,7 @@
                   </li>
                 </ul>
               </div>
-              <div class="flex-4 overflow-hidden bg-ice-600">
+              <div class="flex-6 overflow-hidden bg-ice-600">
                 <img src="/images/GUMI.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
               </div>
             </div>
@@ -176,11 +176,4 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
 </style>
