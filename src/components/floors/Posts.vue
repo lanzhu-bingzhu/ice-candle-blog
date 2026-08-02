@@ -14,7 +14,7 @@
             <h3 class="text-4xl font-bold tracking-widest">Article List</h3>
             <template v-if="posts.length === 0">
               <div class="w-full h-full relative flex justify-center">
-                <div class="font-bold text-[7dvw] text-dark/10 leading-[7dvw] absolute bottom-32">NULL</div>
+                <div class="font-bold text-[11rem] text-dark/10 leading-[11rem] absolute bottom-32">NULL</div>
               </div>
             </template>
             <template v-else>

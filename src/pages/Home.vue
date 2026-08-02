@@ -1,8 +1,8 @@
 <template>
-  <div class="home-root min-h-screen bg-linear-to-b from-[#e8f4fd] to-[#f9fcff] text-slate-800">
+  <div class="bg-linear-to-b from-[#e8f4fd] to-[#f9fcff] text-slate-800">
     <PageHeader />
 
-    <main class="z-10">
+    <main class="z-10 min-h-screen ">
       <section>
         <div class="w-full">
           <div class="overflow-hidden duration-500 w-full h-[80dvh] bg-dark-800 flex">
@@ -39,12 +39,12 @@
         <div class="container mx-auto">
           <div class="px-16">
             <div class="w-full flex py-16">
-              <div class="flex-5 py-16">
+              <div class="flex-5 mr-[10%]">
                 <div class="pb-8">
                   <h2 class="text-4xl font-bold">Hatsune Miku</h2>
                   <p class="text-dark/40">The best of Hatsune Miku form Ice Candle</p>
                 </div>
-                <ul class="full px-8">
+                <ul class="px-8">
                   <li class="border-b p-4">
                     <p class="text-xl text-dark leading-10">占位内容</p>
                     <p class="text-sm text-dark/70">
@@ -56,15 +56,22 @@
                   </li>
                 </ul>
               </div>
-              <div class="flex-6 overflow-hidden bg-ice-600">
+              <div class="flex-7 overflow-hidden bg-ice-600">
                 <img src="/images/miku.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+      
+      <section>
+        <div class="container mx-auto">
+          <div class="px-16">
             <div class="w-full flex py-16">
-              <div class="flex-6 overflow-hidden bg-candle-500">
+              <div class="flex-7 overflow-hidden bg-candle-500">
                 <img src="/images/teto.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
               </div>
-              <div class="flex-5 py-16">
+              <div class="flex-5 ml-[10%]">
                 <div class="text-right pb-8">
                   <h2 class="text-4xl font-bold">Kasane Teto</h2>
                   <p class="text-dark/40">The best of Kasane Teto form Ice Candle</p>
@@ -82,8 +89,15 @@
                 </ul>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container mx-auto">
+          <div class="px-16">
             <div class="w-full flex py-16">
-              <div class="flex-5 py-16">
+              <div class="flex-5 mr-[10%]">
                 <div class="pb-8">
                   <h2 class="text-4xl font-bold">GUMI</h2>
                   <p class="text-dark/40">The best of GUMI form Ice Candle</p>
@@ -100,7 +114,7 @@
                   </li>
                 </ul>
               </div>
-              <div class="flex-6 overflow-hidden bg-ice-600">
+              <div class="flex-7 overflow-hidden bg-ice-600">
                 <img src="/images/GUMI.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
               </div>
             </div>
@@ -117,7 +131,7 @@
               <div class="w-full h-auto flex-1">
                 <div class="w-full h-9/16 relative">
                   <h2 class="absolute bottom-4 right-4 font-bold text-right leading-normal">
-                    <span class="text-6xl">Website</span><br/>
+                    <span class="text-6xl text-ice-600">Website</span><br/>
                     <span class="text-4xl">Introduction</span>
                   </h2>
                 </div>
@@ -128,7 +142,7 @@
                 </div>
                 <div class="w-full h-1/16">
                   <div class="w-full h-full relative">
-                    <p class="text-sm leading-normal absolute bottom-0">Ice Candle</p>
+                    <p class="text-sm text-dark/70 leading-normal absolute bottom-0">Ice Candle</p>
                   </div>
                 </div>
               </div>
@@ -139,12 +153,6 @@
           </div>
         </div>
       </section>
-
-      <!-- 通用楼层循环 -->
-<!--      <template v-for="floor in floors" :key="floor.floor_id">-->
-<!--        <SectionFloor v-bind="floor" />-->
-<!--      </template>-->
-
     </main>
 
     <Footer />

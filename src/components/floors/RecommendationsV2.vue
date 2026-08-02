@@ -3,7 +3,7 @@
     <div class="container mx-auto">
       <div class="p-16">
         <div class="w-full flex">
-          <div class="flex-2 flex">
+          <div class="flex-2 flex h-192">
             <div class="flex-1">
               <div class="w-full h-3/4 overflow-hidden border-4 border-[#f0f7ff]">
                 <img src="/images/miku.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
@@ -23,7 +23,7 @@
               <div class="w-full h-1/5 bg-candle-400 border-4 border-[#f0f7ff]"></div>
             </div>
           </div>
-          <div class="flex-1">
+          <div class="flex-1 h-192">
             <div class="w-full h-6/10 vertical-text text-left relative">
               <span class="mb-16 absolute bottom-0 right-0">
                 <span class="block text-2xl text-dark/70 mt-4">VOCALOID & UTAU</span>

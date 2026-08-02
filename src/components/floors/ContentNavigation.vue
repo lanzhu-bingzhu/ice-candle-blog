@@ -26,7 +26,7 @@
         <div class="flex-1">
           <div class="ml-[20%] h-full">
             <div class="w-full h-[50%] bg-ice-500 overflow-hidden">
-              <img src="/images/04.jpg" alt="alt" class="w-full object-cover aspect-square" />
+              <img src="/images/04.jpg" alt="alt" class="w-full h-auto object-cover aspect-square" />
             </div>
             <div class="w-full h-[10%] bg-candle-400"></div>
           </div>
