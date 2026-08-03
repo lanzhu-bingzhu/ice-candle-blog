@@ -1,7 +1,7 @@
 import request from './api'
 import type { Response, ListResponse } from '@/types'
 
-export const fetchAllCategories = (params?: Record<string, any>) =>
+export const fetchCategories = (params?: Record<string, any> | Object) =>
     request.get<any, ListResponse>('/category', { params: params }).then(res => res.data)
 
 // 根据父分类 ID 获取子分类
