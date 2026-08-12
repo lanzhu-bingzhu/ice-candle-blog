@@ -35,114 +35,115 @@
 
       <RecommendationsV2 />
 
-      <section>
-        <div class="container mx-auto">
-          <div class="px-16">
-            <div class="w-full flex py-16">
-              <div class="flex-5 mr-[10%]">
-                <div class="pb-8">
-                  <h2 class="text-4xl font-bold">Hatsune Miku</h2>
-                  <p class="text-dark/40">The best of Hatsune Miku form Ice Candle</p>
-                </div>
-                <ul class="px-8">
-                  <li class="border-b p-4">
-                    <p class="text-xl text-dark leading-10">占位内容</p>
-                    <p class="text-sm text-dark/70">
-                      <span>占位内容</span>
-                      <span class="float-right text-dark/40 hover:text-ice-600/70">
-                        <a href="">查看</a>
-                      </span>
-                    </p>
-                  </li>
-                </ul>
-              </div>
-              <div class="flex-7 overflow-hidden bg-ice-600">
-                <img src="/images/miku.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <section>
-        <div class="container mx-auto">
-          <div class="px-16">
-            <div class="w-full flex py-16">
-              <div class="flex-7 overflow-hidden bg-candle-500">
-                <img src="/images/teto.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
-              </div>
-              <div class="flex-5 ml-[10%]">
-                <div class="text-right pb-8">
-                  <h2 class="text-4xl font-bold">Kasane Teto</h2>
-                  <p class="text-dark/40">The best of Kasane Teto form Ice Candle</p>
-                </div>
-                <ul class="w-full px-8 float-right">
-                  <li class="border-b p-4">
-                    <p class="text-xl text-dark leading-10">占位内容</p>
-                    <p class="text-sm text-dark/70">
-                      <span>占位内容</span>
-                      <span class="float-right text-dark/40 hover:text-ice-600/70">
-                        <a href="">查看</a>
-                      </span>
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+<!--      <section>-->
+<!--        <div class="container mx-auto">-->
+<!--          <div class="px-16">-->
+<!--            <div class="w-full flex py-16">-->
+<!--              <div class="flex-5 mr-[10%]">-->
+<!--                <div class="pb-8">-->
+<!--                  <h2 class="text-4xl font-bold">Hatsune Miku</h2>-->
+<!--                  <p class="text-dark/40">The best of Hatsune Miku form Ice Candle</p>-->
+<!--                </div>-->
+<!--                <ul class="px-8">-->
+<!--                  <li class="border-b p-4">-->
+<!--                    <p class="text-xl text-dark leading-10">占位内容</p>-->
+<!--                    <p class="text-sm text-dark/70">-->
+<!--                      <span>占位内容</span>-->
+<!--                      <span class="float-right text-dark/40 hover:text-ice-600/70">-->
+<!--                        <a href="">查看</a>-->
+<!--                      </span>-->
+<!--                    </p>-->
+<!--                  </li>-->
+<!--                </ul>-->
+<!--              </div>-->
+<!--              <div class="flex-7 overflow-hidden bg-ice-600">-->
+<!--                <img src="/images/miku.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </section>-->
+<!--      -->
+<!--      <section>-->
+<!--        <div class="container mx-auto">-->
+<!--          <div class="px-16">-->
+<!--            <div class="w-full flex py-16">-->
+<!--              <div class="flex-7 overflow-hidden bg-candle-500">-->
+<!--                <img src="/images/teto.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />-->
+<!--              </div>-->
+<!--              <div class="flex-5 ml-[10%]">-->
+<!--                <div class="text-right pb-8">-->
+<!--                  <h2 class="text-4xl font-bold">Kasane Teto</h2>-->
+<!--                  <p class="text-dark/40">The best of Kasane Teto form Ice Candle</p>-->
+<!--                </div>-->
+<!--                <ul class="w-full px-8 float-right">-->
+<!--                  <li class="border-b p-4">-->
+<!--                    <p class="text-xl text-dark leading-10">占位内容</p>-->
+<!--                    <p class="text-sm text-dark/70">-->
+<!--                      <span>占位内容</span>-->
+<!--                      <span class="float-right text-dark/40 hover:text-ice-600/70">-->
+<!--                        <a href="">查看</a>-->
+<!--                      </span>-->
+<!--                    </p>-->
+<!--                  </li>-->
+<!--                </ul>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </section>-->
 
-      <section>
-        <div class="container mx-auto">
-          <div class="px-16">
-            <div class="w-full flex py-16">
-              <div class="flex-5 mr-[10%]">
-                <div class="pb-8">
-                  <h2 class="text-4xl font-bold">GUMI</h2>
-                  <p class="text-dark/40">The best of GUMI form Ice Candle</p>
-                </div>
-                <ul class="full px-8">
-                  <li class="border-b p-4">
-                    <p class="text-xl text-dark leading-10">占位内容</p>
-                    <p class="text-sm text-dark/70">
-                      <span>占位内容</span>
-                      <span class="float-right text-dark/40 hover:text-ice-600/70">
-                        <a href="">查看</a>
-                      </span>
-                    </p>
-                  </li>
-                </ul>
-              </div>
-              <div class="flex-7 overflow-hidden bg-ice-600">
-                <img src="/images/GUMI.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+<!--      <section>-->
+<!--        <div class="container mx-auto">-->
+<!--          <div class="px-16">-->
+<!--            <div class="w-full flex py-16">-->
+<!--              <div class="flex-5 mr-[10%]">-->
+<!--                <div class="pb-8">-->
+<!--                  <h2 class="text-4xl font-bold">GUMI</h2>-->
+<!--                  <p class="text-dark/40">The best of GUMI form Ice Candle</p>-->
+<!--                </div>-->
+<!--                <ul class="full px-8">-->
+<!--                  <li class="border-b p-4">-->
+<!--                    <p class="text-xl text-dark leading-10">占位内容</p>-->
+<!--                    <p class="text-sm text-dark/70">-->
+<!--                      <span>占位内容</span>-->
+<!--                      <span class="float-right text-dark/40 hover:text-ice-600/70">-->
+<!--                        <a href="">查看</a>-->
+<!--                      </span>-->
+<!--                    </p>-->
+<!--                  </li>-->
+<!--                </ul>-->
+<!--              </div>-->
+<!--              <div class="flex-7 overflow-hidden bg-ice-600">-->
+<!--                <img src="/images/GUMI.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </section>-->
 
-      <Posts :posts="[]" />
+      <Posts :posts="posts" />
 
       <section>
         <div class="container mx-auto">
           <div class="p-16">
             <div class="w-full flex">
               <div class="w-full h-auto flex-1">
-                <div class="w-full h-9/16 relative">
-                  <h2 class="absolute bottom-4 right-4 font-bold text-right leading-normal">
+                <div class="w-full h-9/16 flex items-end justify-end p-2">
+                  <h2 class="text-right font-bold leading-normal">
                     <span class="text-6xl text-ice-600">Website</span><br/>
                     <span class="text-4xl">Introduction</span>
                   </h2>
                 </div>
                 <div class="w-[150%] h-6/16 bg-ice-600 relative">
-                  <div class="p-8 text-ice-50">
-                    <p>占位数据</p>
+                  <div class="p-16 text-ice-50">
+                    <p>一个记录兴趣爱好和杂事的个人小站。</p>
+                    <p>冰不冷，烛有光。</p>
                   </div>
                 </div>
                 <div class="w-full h-1/16">
-                  <div class="w-full h-full relative">
-                    <p class="text-sm text-dark/70 leading-normal absolute bottom-0">Ice Candle</p>
+                  <div class="w-full h-full flex items-end">
+                    <p class="text-sm text-dark/40 leading-normal font-extrabold">ICE CANDLE</p>
                   </div>
                 </div>
               </div>
@@ -160,17 +161,21 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useHomeData } from '@/composables/useHomeData'
 import Footer from '@/components/Footer.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import ContentNavigation from '@/components/floors/ContentNavigation.vue'
 import RecommendationsV2 from '@/components/floors/RecommendationsV2.vue'
 import Posts from '@/components/floors/Posts.vue'
+import { fetchPosts } from "@/services/post.ts";
+import type { Post } from "@/types";
 // import SectionFloor from '@/components/SectionFloor.vue'
 // import Recommendations from '@/components/floors/Recommendations.vue'
 
 const { loadTopCategories, topCategories } = useHomeData()
+
+const posts = ref<Post[]>([])
 
 async function loadTopCategoryData() {
   if (topCategories.value.length == 0) {
@@ -178,8 +183,13 @@ async function loadTopCategoryData() {
   }
 }
 
+async function loadPosts(params?: Record<string, any>): Promise<void> {
+  posts.value = await fetchPosts(params)
+}
+
 onMounted(() => {
   loadTopCategoryData()
+  loadPosts()
 })
 </script>
 

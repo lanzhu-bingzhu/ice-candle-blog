@@ -5,41 +5,51 @@
     <main class="z-10 min-h-screen">
       <section>
         <div class="container mx-auto">
+          <BreadcrumbNav :items="breadcrumbItem"></BreadcrumbNav>
           <div class="flex p-16">
-            <div class="flex-1 border-r-1 border-dark-800/10 p-16">
-              <h2 class="text-4xl font-bold pb-8">Category Directory</h2>
-              <ul>
-                <template v-for="item in categoryMap">
-                  <li class="border-b border-dark/60 p-4">
-                    <router-link :to="`/catalogue/${item.category_id}`">
-                      <p class="w-full indent-4 hover:text-ice-900">
-                        <span>{{ item.name }}</span>
-                      </p>
-                    </router-link>
-                  </li>
-                </template>
-              </ul>
+            <div class="flex-2 border-r-1 border-dark-800/10">
+              <div class="p-16">
+                <h2 class="text-4xl font-bold pb-4 mb-4 border-b">
+                  <span class="block text-ice-600">Category</span>
+                  <span class="block">Directory</span>
+                </h2>
+                <ul>
+                  <template v-for="item in categoryMap">
+                    <li class="border-b border-dark/30 p-4">
+                      <router-link :to="`/catalogue/${item.category_id}`">
+                        <p class="w-full indent-4 hover:text-ice-900">
+                          <span>{{ item.name }}</span>
+                        </p>
+                      </router-link>
+                    </li>
+                  </template>
+                </ul>
+              </div>
             </div>
-            <div class="flex-5 p-16">
-              <h2 class="text-4xl font-bold pb-8">
-                Posts
-                <span v-if="selectedCategory"> - {{ selectedCategory.name }}</span>
-              </h2>
-              <ul class="w-full mx-auto px-8">
-                <template v-for="post in posts">
-                  <li class="border-b border-dark/60 p-4">
+            <div class="flex-5">
+              <div class="p-16">
+                <h2 class="text-4xl pb-8">
+                  <span class="font-bold">Posts</span>
+                  <span class="text-3xl" v-if="selectedCategory"> - {{ selectedCategory.name }}</span>
+                </h2>
+                <ul class="w-full mx-auto px-8">
+                  <template v-for="post in posts">
                     <router-link :to="`/post/${post.post_id}`">
-                      <p class="text-xl text-dark leading-10 hover:text-ice-900">{{ post.title }}</p>
+                      <li class="group flex border-b border-dark/30 p-4">
+                        <div class="flex-1">
+                          <p class="text-xl text-dark leading-10 group-hover:text-ice-800">{{ post.title }}</p>
+                          <p class="text-sm text-dark/70 text-ellipsis line-clamp-2 group-hover:text-dark/40">
+                            <span>{{ post.description ? post.description : post.summary }}</span>
+                          </p>
+                        </div>
+                        <div class="flex items-end px-8">
+                          <span class="text-sm text-dark/30 group-hover:text-ice-600/70">查看详情</span>
+                        </div>
+                      </li>
                     </router-link>
-                    <p class="text-sm text-dark/70">
-                      <span>{{ post.description ? post.description : post.summary }}</span>
-                      <span class="float-right text-dark/40 hover:text-ice-600/70">
-                        <router-link :to="`/post/${post.post_id}`">查看详情</router-link>
-                      </span>
-                    </p>
-                  </li>
-                </template>
-              </ul>
+                  </template>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -58,8 +68,12 @@ import { useRoute } from 'vue-router'
 import { fetchCategories, fetchCategoryById } from "@/services/category.ts";
 import { fetchPosts } from "@/services/post.ts";
 import type { Category, Post } from "@/types";
+import { useLoading } from "@/composables/useLoading.ts";
+import BreadcrumbNav from "@/components/BreadcrumbNav.vue";
 
 const route = useRoute()
+
+const { show, hide } = useLoading()
 
 const selectedCategoryId = ref<string | number>(route.params.categoryId as string)
 const categoryMap = ref<Category[]>([])
@@ -67,8 +81,12 @@ const selectedCategory = ref<Record<string, any>>()
 const posts = ref<Post[]>([])
 const params = ref<Record<string, any>>({})
 const postParams = ref<Record<string, any>>({})
-const loading = ref(false)
 const postLoading = ref(false)
+
+const breadcrumbItem = ref([
+  { label: 'Home', to: '/' },
+  { label: 'Catalogue' }
+])
 
 async function loadData(): Promise<void> {
   if (selectedCategoryId.value) {
@@ -77,12 +95,12 @@ async function loadData(): Promise<void> {
 }
 
 async function loadCategories(params?: Record<string, any>): Promise<void> {
-  loading.value = true
+  show('loading......')
   try {
     categoryMap.value = await fetchCategories(params)
-    loading.value = false
+    hide()
   } catch (e: any) {
-    loading.value = false
+    hide()
   }
 }
 

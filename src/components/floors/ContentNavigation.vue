@@ -9,16 +9,20 @@
               <span>Content Navigation</span>
             </h2>
             <ul class="w-full mx-auto px-8">
-              <template v-for="item in props.topCategories">
-                <li class="border-b p-4">
-                  <p class="text-xl text-dark leading-10">{{ item.name }}</p>
-                  <p class="text-sm text-dark/70">
-                    <span>{{ item.description }}</span>
-                    <span class="float-right text-dark/40 hover:text-ice-600/70">
-                      <router-link :to="`/catalogue/${item.category_id}`">查看分类</router-link>
-                    </span>
-                  </p>
-                </li>
+              <template v-for="item in topCategories">
+                <router-link :to="`/catalogue/${item.category_id}`">
+                  <li class="group flex border-b p-4">
+                    <div class="flex-1">
+                      <p class="text-xl text-dark leading-10 group-hover:text-ice-800">{{ item.name }}</p>
+                      <p class="text-sm text-dark/70 group-hover:text-dark/40">
+                        <span>{{ item.description }}</span>
+                      </p>
+                    </div>
+                    <div class="flex items-end px-8">
+                      <span class="text-sm text-dark/30 group-hover:text-ice-600/70">查看分类</span>
+                    </div>
+                  </li>
+                </router-link>
               </template>
             </ul>
           </div>
@@ -37,11 +41,18 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from "vue"
 import type { Category } from "@/types/index.ts"
 
 const props = defineProps<{
   topCategories: Array<Category>
 }>()
+
+const topCategories = ref<Array<Category>>(props.topCategories)
+
+watch(() => props.topCategories, () => {
+  topCategories.value = props.topCategories
+})
 </script>
 
 <style scoped></style>

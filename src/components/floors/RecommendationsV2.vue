@@ -24,8 +24,8 @@
             </div>
           </div>
           <div class="flex-1 h-192">
-            <div class="w-full h-6/10 vertical-text text-left relative">
-              <span class="mb-16 absolute bottom-0 right-0">
+            <div class="w-full h-6/10 vertical-text text-left flex items-end justify-end">
+              <span class="mb-16">
                 <span class="block text-2xl text-dark/70 mt-4">VOCALOID & UTAU</span>
                 <span class="block text-xl text-dark/40">Music Recommendation</span>
               </span>

@@ -19,7 +19,21 @@
             </template>
             <template v-else>
               <ul class="px-8 py-16">
-                <li>占位数据</li>
+                <template v-for="(post, index) in posts">
+                  <router-link :to="`/post/${post.post_id}`">
+                    <li v-if="index < 5" class="group flex border-b border-dark/30 p-4">
+                      <div class="flex-1">
+                        <p class="text-xl text-dark leading-10 group-hover:text-ice-800">{{ post.title }}</p>
+                        <p class="text-sm text-dark/70 text-ellipsis line-clamp-2 group-hover:text-dark/40">
+                          <span>{{ post.description ? post.description : post.summary }}</span>
+                        </p>
+                      </div>
+                      <div class="flex items-end px-8">
+                        <span class="text-sm text-dark/30 group-hover:text-ice-600/70">查看详情</span>
+                      </div>
+                    </li>
+                  </router-link>
+                </template>
               </ul>
             </template>
           </div>
@@ -31,10 +45,17 @@
 
 <script setup lang="ts">
 import type { Post } from "@/types/index.ts"
+import { ref, watch } from "vue";
 
 const props = defineProps<{
   posts: Array<Post>
 }>()
+
+const posts = ref<Array<Post>>(props.posts)
+
+watch(() => props.posts, () => {
+  posts.value = props.posts
+})
 </script>
 
 <style scoped></style>
