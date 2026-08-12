@@ -1,77 +1,63 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-gradient-to-b from-[#e8f4fd] to-[#f9fcff] text-slate-800">
-    <!-- 顶部：只显示 Logo -->
+  <div class="bg-linear-to-b from-[#e8f4fd] to-[#f9fcff] text-slate-800">
     <PageHeader />
 
-    <main class="flex-1 max-w-4xl mx-auto w-full px-4 py-8">
-      <!-- 加载中 -->
-      <div v-if="loading" class="text-center py-12 text-slate-400">加载中...</div>
-
-      <!-- 错误提示 -->
-      <div v-else-if="error" class="text-center py-12 text-red-400">
-        <p>{{ error }}</p>
-        <router-link to="/" class="text-ice-500 hover:underline mt-2 inline-block">返回首页</router-link>
-      </div>
-
-      <!-- 文章不存在 -->
-      <div v-else-if="!post" class="text-center py-12 text-slate-400">
-        <p class="text-lg">文章不存在</p>
-        <router-link to="/" class="text-ice-500 hover:underline mt-2 inline-block">返回首页</router-link>
-      </div>
-
-      <template v-else>
-        <!-- 文章类型 -->
-        <template v-if="post.type === 'article'">
-          <div class="flex items-center gap-4 mb-8">
-            <div class="w-12 h-12 rounded-full bg-ice-100 flex items-center justify-center text-xl">
-              <img v-if="post.avatar" :src="post.avatar" class="w-full h-full rounded-full object-cover" />
-              <span v-else>🧊</span>
+    <main class="z-10 min-h-screen">
+      <template v-if="!loading">
+        <section>
+          <template v-if="post">
+            <div class="container mx-auto">
+              <BreadcrumbNav :items="breadcrumbItem" />
+              <div class="w-full">
+                <div class="w-full h-[360px] mb-8">
+                  <img :src="post.cover" alt="alt" class="w-full h-full object-cover aspect-square" />
+                </div>
+                <div class="flex mb-8">
+                  <div class="flex-1 text-ice-50">
+                    <div class="bg-candle-600 p-16 mb-2">
+                      <div class="w-2/3 mx-auto">
+                        <img src="/images/avatar.jpg" alt="alt" class="w-full h-auto rounded-full border-8 border-ice-50 object-cover aspect-square" />
+                      </div>
+                      <div class="text-2xl text-center mt-8">
+                        <span>Ice Candle</span>
+                      </div>
+                    </div>
+                    <div class="bg-ice-600 p-16">
+                      <p>{{ post.description ? post.description : post.summary }}</p>
+                    </div>
+                  </div>
+                  <div class="flex-3">
+                    <post-detail :post="post" />
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>
-              <p class="font-medium text-slate-700">{{ post.author || 'IceCandle' }}</p>
-              <p class="text-sm text-slate-400">{{ post.date }}</p>
+          </template>
+          <template v-else>
+            <div class="flex">
+              <div class="flex-1">
+                <div class="w-full min-h-screen flex items-center justify-center">
+                  <div class="text-center">
+                    <h1 class="text-[10dvh] leading-[10dvh] font-extrabold">
+                      <span class="block">Article</span>
+                      <span class="block">not fount</span>
+                    </h1>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-1 min-h-screen">
+                <div class="w-full h-full bg-candle-600">
+                  <router-link to="/catalogue">
+                    <h2 class="text-[7dvh] leading-[7dvh] font-extrabold text-ice-50 p-8">
+                      <span>Back to</span><br>
+                      <span>Contents</span>
+                    </h2>
+                  </router-link>
+                </div>
+              </div>
             </div>
-          </div>
-
-          <h1 class="text-3xl font-bold text-slate-800 mb-6">{{ post.title }}</h1>
-          <div class="prose prose-slate max-w-none" v-html="post.content"></div>
-        </template>
-
-        <!-- 图文类型 -->
-        <template v-if="post.type === 'image-text'">
-          <h1 class="text-2xl font-bold text-slate-800 mb-6">{{ post.title }}</h1>
-
-          <div class="mb-8">
-            <div v-if="post.images && post.images.length" class="grid grid-cols-1 gap-4">
-              <img
-                  v-for="(img, index) in post.images"
-                  :key="index"
-                  :src="img"
-                  :alt="`${post.title} - ${index + 1}`"
-                  class="w-full rounded-lg shadow-sm bg-slate-100 object-cover"
-                  style="max-height: 70vh;"
-              />
-            </div>
-            <div v-else class="aspect-video rounded-lg bg-gradient-to-br from-ice-50 to-sky-100 flex items-center justify-center text-6xl">
-              🖼️
-            </div>
-          </div>
-
-          <div class="flex items-center gap-4 mb-8 p-4 rounded-lg bg-white/60 border border-slate-200">
-            <div class="w-10 h-10 rounded-full bg-ice-100 flex items-center justify-center text-lg">
-              <img v-if="post.avatar" :src="post.avatar" class="w-full h-full rounded-full object-cover" />
-              <span v-else>🧊</span>
-            </div>
-            <div>
-              <p class="font-medium text-slate-700">{{ post.author || 'IceCandle' }}</p>
-              <p class="text-sm text-slate-400">{{ post.date }}</p>
-            </div>
-          </div>
-
-          <div v-if="post.description" class="text-slate-600 leading-relaxed">
-            <p>{{ post.description }}</p>
-          </div>
-        </template>
+          </template>
+        </section>
       </template>
     </main>
 
@@ -84,27 +70,41 @@ import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import PageHeader from '@/components/PageHeader.vue'
 import Footer from '@/components/Footer.vue'
-import { useHomeData } from '@/composables/useHomeData'
+import PostDetail from "@/components/PostDetail.vue";
 import type { Post } from '@/types'
+import { fetchPostById } from "@/services/post.ts";
+import { useLoading } from "@/composables/useLoading.ts";
+import BreadcrumbNav from "@/components/BreadcrumbNav.vue";
 
 const route = useRoute()
-const { loadPost, loading, error } = useHomeData()
+
+const { show, hide } = useLoading()
 
 const post = ref<Post | null>(null)
+const loading = ref(true)
 
-// 监听路由参数变化，加载文章
-watch(
-    () => route.params.postId,
-    async (postId) => {
-      if (!postId) {
-        post.value = null
-        return
-      }
-      post.value = null
-      error.value = null
-      const data = await loadPost(postId as string)
-      post.value = data
-    },
-    { immediate: true }
-)
+const breadcrumbItem = ref([
+  { label: 'Home', to: '/' },
+  { label: 'Catalogue', to: '/catalogue' },
+  { label: 'post' }
+])
+
+async function loadPost(postId: string): Promise<void> {
+  show('获取文章中......')
+  loading.value = true
+  if (!postId) {
+    post.value = null
+    return
+  }
+  post.value = await fetchPostById(postId)
+  loading.value = false
+  hide()
+}
+
+watch(() => route.params.postId, (postId) => {
+  loadPost(postId as string)
+},
+{
+  immediate: true
+})
 </script>

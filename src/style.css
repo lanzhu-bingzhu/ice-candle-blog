@@ -108,30 +108,6 @@ body {
   color: #1e3a5f; /* 深蓝灰文字 */
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-}
-
-h1 {
-  font-size: 36px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
 p {
   margin: 0;
 }
@@ -371,4 +347,18 @@ code {
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(56, 189, 248, 0.5) rgba(0, 0, 0, 0.05);
+}
+
+.vertical-text {
+  writing-mode: sideways-lr;
+  -webkit-writing-mode: sideways-lr;
+  text-orientation: mixed;
+}
+
+.toc-dots {
+  margin: 0 0.5rem;
+  background: radial-gradient(circle at 50% 50%, #333333 1.5px, transparent 2px);
+  background-size: 0.8rem 1.2em;
+  background-repeat: repeat-x;
+  background-position: 0 50%;
 }
