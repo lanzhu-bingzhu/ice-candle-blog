@@ -1,10 +1,9 @@
 <template>
-  <div class="flex flex-col min-h-screen bg-gradient-to-b from-[#e8f4fd] to-[#f9fcff] text-slate-800">
-    <!-- 顶部 Logo -->
+  <div class="bg-linear-to-b from-[#e8f4fd] to-[#f9fcff] text-slate-800">
     <PageHeader />
 
     <!-- 主体内容 -->
-    <main class="flex-1 flex items-center justify-center px-4">
+    <main class="min-h-screen flex-1 flex items-center justify-center px-4">
       <div class="text-center relative">
         <!-- 背景装饰：几个漂浮的冰晶（纯 CSS 动画） -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden">
@@ -14,9 +13,7 @@
         </div>
 
         <!-- 404 大标题 -->
-        <h1 class="text-8xl md:text-9xl font-extrabold bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-400 bg-clip-text text-transparent animate-float">
-          404
-        </h1>
+        <h1 class="text-8xl md:text-9xl font-extrabold bg-gradient-to-r from-cyan-400 via-ice-500 to-indigo-400 bg-clip-text text-transparent animate-float">404</h1>
 
         <!-- 提示文字 -->
         <p class="mt-6 text-xl md:text-2xl text-slate-600 font-medium">
@@ -27,7 +24,7 @@
         </p>
 
         <!-- 返回按钮 -->
-        <router-link to="/" class="mt-8 inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white border border-blue-200 text-blue-600 hover:bg-blue-50 hover:border-blue-400 shadow-sm transition-all">
+        <router-link to="/" class="mt-8 inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white border border-ice-200 text-ice-600 hover:bg-ice-50 hover:border-ice-400 shadow-sm transition-all">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
           </svg>
@@ -36,7 +33,6 @@
       </div>
     </main>
 
-    <!-- 底部备案 -->
     <Footer />
   </div>
 </template>

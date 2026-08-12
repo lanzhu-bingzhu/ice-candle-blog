@@ -1,14 +1,14 @@
 <template>
-  <div class="w-full max-w-6xl mx-auto">
+  <div class="w-full relative">
     <component
       :is="isExternalLink ? 'a' : 'router-link'"
       :href="isExternalLink ? link : undefined"
       :target="isExternalLink ? '_blank' : undefined"
       :rel="isExternalLink ? 'noopener noreferrer' : undefined"
       :to="isExternalLink ? undefined : link"
-      class="block overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 hover:scale-[1.02]"
+      class="block overflow-hidden duration-500"
     >
-      <img :src="image" :alt="alt" class="w-full h-auto object-cover aspect-[21/9]" />
+      <img :src="image" :alt="alt" class="w-full h-auto object-cover" :class="aspect ? aspect : 'aspect-[21/9]'" />
     </component>
   </div>
 </template>
@@ -20,6 +20,7 @@ const props = defineProps<{
   image: string
   link: string
   alt?: string
+  aspect?: string
 }>()
 
 const isExternalLink = computed(() => {

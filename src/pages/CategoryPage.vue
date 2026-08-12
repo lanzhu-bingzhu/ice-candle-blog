@@ -11,7 +11,7 @@
               @click="switchParent(cat.category_id)"
               class="flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium transition-colors"
               :class="currentParentId == cat.category_id
-              ? 'bg-blue-500 text-white shadow-sm'
+              ? 'bg-ice-500 text-white shadow-sm'
               : 'text-slate-300 hover:text-white hover:bg-white/10'"
           >
             <span class="hidden sm:inline">{{ cat.name }}</span>
@@ -20,7 +20,7 @@
       </PageHeader>
 
       <!-- 第二层：小分类标签条 -->
-      <div v-if="subCategories.length > 0" class="bg-blue-50/80 backdrop-blur-md border-b border-slate-200 px-4 py-2">
+      <div v-if="subCategories.length > 0" class="bg-ice-50/80 backdrop-blur-md border-b border-slate-200 px-4 py-2">
         <div class="max-w-6xl mx-auto flex gap-2 overflow-x-auto scrollbar-hide">
           <button
               v-for="cat in subCategories"
@@ -28,8 +28,8 @@
               @click="switchCategory(cat.category_id)"
               class="flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors"
               :class="selectedCategoryId == cat.category_id
-              ? 'bg-blue-500 text-white'
-              : 'bg-white border border-slate-200 text-slate-600 hover:border-blue-300'"
+              ? 'bg-ice-500 text-white'
+              : 'bg-white border border-slate-200 text-slate-600 hover:border-ice-300'"
           >
             {{ cat.name }}
           </button>
@@ -45,13 +45,13 @@
       <!-- 错误提示 -->
       <div v-else-if="error" class="text-center py-12 text-red-400">
         <p>{{ error }}</p>
-        <router-link to="/" class="text-blue-500 hover:underline mt-2 inline-block">返回首页</router-link>
+        <router-link to="/" class="text-ice-500 hover:underline mt-2 inline-block">返回首页</router-link>
       </div>
 
       <!-- 无数据 -->
       <div v-else-if="!currentCategory" class="text-center py-12 text-slate-400">
         <p class="text-lg">分类不存在</p>
-        <router-link to="/" class="text-blue-500 hover:underline mt-2 inline-block">返回首页</router-link>
+        <router-link to="/" class="text-ice-500 hover:underline mt-2 inline-block">返回首页</router-link>
       </div>
 
       <template v-else>
@@ -60,37 +60,37 @@
         </h2>
 
         <!-- 文章型列表：一行一条 -->
-        <div v-if="currentCategory.type == 'article'" class="space-y-4">
+        <div v-if="currentCategory.type_id == 2" class="space-y-4">
           <router-link
               v-for="post in posts"
               :key="post.post_id"
               :to="`/post/${post.post_id}`"
-              class="block p-5 rounded-xl bg-white/80 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all"
+              class="block p-5 rounded-lg bg-white/80 border border-slate-200 hover:border-ice-300 hover:shadow-md transition-all"
           >
             <div class="flex flex-wrap gap-2 mb-2" v-if="post.tags">
               <span v-for="tag in post.tags" :key="tag"
-                    class="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-600 border border-blue-200"
+                    class="text-xs px-2 py-0.5 rounded-full bg-ice-100 text-ice-600 border border-ice-200"
               >{{ tag.name }}</span>
             </div>
             <h3 class="text-lg font-semibold text-slate-800">{{ post.title }}</h3>
             <p class="text-sm text-slate-400 mt-2">{{ post.summary }}</p>
             <div class="flex justify-between items-center mt-4 text-xs text-slate-400">
               <span>{{ post.date }}</span>
-              <span class="text-blue-500">阅读 →</span>
+              <span class="text-ice-500">阅读 →</span>
             </div>
           </router-link>
           <div v-if="posts.length == 0" class="text-center text-slate-400 py-12">暂无文章</div>
         </div>
 
         <!-- 图文型列表：一行五个 -->
-        <div v-else-if="currentCategory.type == 'image-text'" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div v-else-if="currentCategory.type_id == 3" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           <router-link
               v-for="post in posts"
               :key="post.post_id"
               :to="`/post/${post.post_id}`"
-              class="group block rounded-xl bg-white/80 border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all overflow-hidden"
+              class="group block rounded-lg bg-white/80 border border-slate-200 hover:border-ice-300 hover:shadow-md transition-all overflow-hidden"
           >
-            <div class="aspect-square bg-gradient-to-br from-blue-50 to-sky-100 flex items-center justify-center">
+            <div class="aspect-square bg-gradient-to-br from-ice-50 to-sky-100 flex items-center justify-center">
               <img v-if="post.cover" :src="post.cover" :alt="post.title" class="w-full h-full object-cover" />
               <span v-else class="text-4xl">🖼️</span>
             </div>

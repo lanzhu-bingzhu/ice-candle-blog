@@ -1,7 +1,7 @@
 import { ref, reactive } from 'vue'
 import { useLoading } from './useLoading'
-import { fetchTopCategories, fetchSubCategories, fetchCategoryById } from '@/services/category'
-import { fetchPostsByCategory, fetchPostById } from '@/services/post'
+import { fetchCategories, fetchSubCategories, fetchCategoryById } from '@/services/category'
+import { fetchPosts, fetchPostById } from '@/services/post'
 import { fetchFloors } from '@/services/floor'
 import type { Category, Post, FloorConfig } from '@/types'
 
@@ -19,7 +19,7 @@ export function useHomeData() {
     if (topCategories.value.length) return
     show('加载导航...')
     try {
-      const data = await fetchTopCategories()
+      const data = await fetchCategories({ parent_id: 0 })
       topCategories.value = data
       data.forEach(c => categoryMap[c.category_id] = c)
     } catch (e: any) {
@@ -50,7 +50,7 @@ export function useHomeData() {
     if (postsMap[idStr]) return postsMap[idStr]
     show('加载文章...')
     try {
-      const posts = await fetchPostsByCategory(categoryId)
+      const posts = await fetchPosts({ category_id: categoryId })
       postsMap[idStr] = posts
       hide()
       return posts

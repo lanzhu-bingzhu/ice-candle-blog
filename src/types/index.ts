@@ -12,10 +12,14 @@ export interface ListResponse {
 
 export interface Category {
   category_id: string | number
+  parent_id: string | number
+  type_id: number
   name: string
-  type: 'article' | 'image-text'       // 决定文章列表展示方式
   description: string
-  parent_id?: number | string
+  is_show: number
+  created_at: string
+  updated_at: string
+  children?: Category[]
 }
 
 // 统一文章/图文条目
@@ -61,11 +65,12 @@ export interface Task {
 export interface FloorConfig {
   floor_id: string | number
   category_id: string | number
-  type: 'banner' | 'article' | 'image-text'
+  type_id: number
   title: string
   description: string
-  items: any[]            // 由后端已拼装好的卡片数据
+  items: any[]
   image: string
   link: string
-  alt: string
+  alt: string,
+  category: Category
 }
