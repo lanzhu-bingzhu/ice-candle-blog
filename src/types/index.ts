@@ -37,6 +37,8 @@ export interface Post {
   avatar?: string
   content?: string    // 文章内容（HTML）
   description?: string // 图文描述
+  created_at: string
+  updated_at: string
 }
 
 export interface TaskNode {
