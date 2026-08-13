@@ -7,23 +7,40 @@
         <section>
           <template v-if="post">
             <div class="container mx-auto">
-              <BreadcrumbNav :items="breadcrumbItem" />
               <div class="w-full">
-                <div class="w-full h-[360px] mb-8">
+                <BreadcrumbNav :items="breadcrumbItem" />
+                <div class="w-full h-[580px] mb-8 bg-white border-4 border-white">
                   <img :src="post.cover" alt="alt" class="w-full h-full object-cover aspect-square" />
                 </div>
                 <div class="flex mb-8">
                   <div class="flex-1 text-ice-50">
-                    <div class="bg-candle-600 p-16 mb-2">
-                      <div class="w-2/3 mx-auto">
-                        <img src="/images/avatar.jpg" alt="alt" class="w-full h-auto rounded-full border-8 border-ice-50 object-cover aspect-square" />
-                      </div>
-                      <div class="text-2xl text-center mt-8">
-                        <span>Ice Candle</span>
+                    <div class="bg-candle-600 p-8 mb-2">
+                      <h2 class="font-bold pb-2 border-b-1 border-ice-50 border-dashed">Author information</h2>
+                      <div class="w-2/3 mx-auto p-8">
+                        <div>
+                          <img src="/images/avatar.jpg" alt="alt" class="w-full h-auto rounded-full border-8 border-ice-50 object-cover aspect-square" />
+                        </div>
+                        <div class="font-bold text-2xl text-center mt-8">
+                          <span>Ice Candle</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="bg-ice-600 p-16">
-                      <p>{{ post.description ? post.description : post.summary }}</p>
+                    <div class="bg-ice-600 p-8">
+                      <h2 class="font-bold pb-2 border-b-1 border-ice-50 border-dashed">Content Details</h2>
+                      <div class="py-4">
+                        <div class="p-2">
+                          <h3 class="font-bold py-1">Posting time</h3>
+                          <p>{{ post.created_at }}</p>
+                        </div>
+                        <div v-if="post.updated_at" class="p-2">
+                          <h3 class="font-bold py-1">Edit time</h3>
+                          <p>{{ post.updated_at }}</p>
+                        </div>
+                        <div class="p-2">
+                          <h3 class="font-bold py-1">Description or summary</h3>
+                          <p>{{ post.description ? post.description : post.summary }}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div class="flex-3">

@@ -5,13 +5,13 @@
     <main class="z-10 min-h-screen ">
       <section>
         <div class="w-full">
-          <div class="overflow-hidden duration-500 w-full h-[80dvh] bg-dark-800 flex">
+          <div class="overflow-hidden w-full h-[80dvh] bg-dark-800 flex">
             <div class="flex-1">
               <img src="/images/header-floor.jpg" alt="alt" class="w-full h-auto object-cover aspect-8/21" />
             </div>
             <div class="flex-2 ml-[25%] flex items-center justify-center">
               <div>
-                <div class="text-ice-50 p-8">
+                <div class="text-ice-50 p-8 pb-4">
                   <h1 class="text-8xl font-extrabold tracking-widest"><span class="text-ice-600">ICE</span> CANDLE</h1>
                   <p class="text-2xl font-bold pt-6 tracking-[.9em] pl-[0.25em]">冰烛的个人网站</p>
                 </div>
@@ -20,7 +20,7 @@
                     <span><span class="text-ice-400/60">Ⅰ.</span> Content Navigation</span>
                     <span class="pl-4"><span class="text-ice-400/60">Ⅱ.</span> Recommendations</span>
                     <span class="pl-4"><span class="text-ice-400/60">Ⅲ.</span> Posts</span>
-                    <span class="pl-4"><span class="text-ice-400/60">Ⅳ.</span> Programming</span>
+                    <span class="pl-4"><span class="text-ice-400/60">Ⅳ.</span> Website Introduction</span>
                   </p>
                 </div>
               </div>
