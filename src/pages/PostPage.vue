@@ -30,15 +30,15 @@
                       <div class="py-4">
                         <div class="p-2">
                           <h3 class="font-bold py-1">Posting time</h3>
-                          <p>{{ post.created_at }}</p>
+                          <p class="text-sm">{{ post.created_at }}</p>
                         </div>
                         <div v-if="post.updated_at" class="p-2">
                           <h3 class="font-bold py-1">Edit time</h3>
-                          <p>{{ post.updated_at }}</p>
+                          <p class="text-sm">{{ post.updated_at }}</p>
                         </div>
                         <div class="p-2">
                           <h3 class="font-bold py-1">Description or summary</h3>
-                          <p>{{ post.description ? post.description : post.summary }}</p>
+                          <p class="text-sm">{{ post.description ? post.description : post.summary }}</p>
                         </div>
                       </div>
                     </div>
