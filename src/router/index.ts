@@ -8,6 +8,7 @@ import NotFound from '@/pages/NotFound.vue'
 const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/catalogue/:categoryId(\\d+)?', name: 'Catalogue', component: Catalogue },
+  { path: '/catalogue/:categoryId(\\d+)/post/:postId', name: 'Catalogue - Post', component: PostPage },
   { path: '/post/:postId', name: 'Post', component: PostPage },
   { path: '/task/:taskName', component: TaskPage },
   { path: '/:pathMatch(.*)*', component: NotFound },

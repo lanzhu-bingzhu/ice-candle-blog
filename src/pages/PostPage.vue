@@ -26,7 +26,7 @@
                       </div>
                     </div>
                     <div class="bg-ice-600 p-8">
-                      <h2 class="font-bold pb-2 border-b-1 border-ice-50 border-dashed">Content Details</h2>
+                      <h2 class="font-bold pb-2 border-b-1 border-ice-50 border-dashed">Content details</h2>
                       <div class="py-4">
                         <div class="p-2">
                           <h3 class="font-bold py-1">Posting time</h3>
@@ -118,10 +118,26 @@ async function loadPost(postId: string): Promise<void> {
   hide()
 }
 
-watch(() => route.params.postId, (postId) => {
-  loadPost(postId as string)
-},
-{
+function checkBreadcrumbNav(categoryId: string) {
+  if (categoryId) {
+    breadcrumbItem.value = [
+      { label: 'Home', to: '/' },
+      { label: `Catalogue - ${categoryId}`, to: `/catalogue/${categoryId}` },
+      { label: 'post' }
+    ]
+  } else {
+    breadcrumbItem.value = [
+      { label: 'Home', to: '/' },
+      { label: 'Catalogue', to: '/catalogue' },
+      { label: 'post' }
+    ]
+  }
+}
+
+watch(() => route.params, params => {
+  loadPost(params.postId as string)
+  checkBreadcrumbNav(params.categoryId as string)
+}, {
   immediate: true
 })
 </script>
