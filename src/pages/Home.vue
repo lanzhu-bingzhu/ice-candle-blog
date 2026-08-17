@@ -170,8 +170,6 @@ import RecommendationsV2 from '@/components/floors/RecommendationsV2.vue'
 import Posts from '@/components/floors/Posts.vue'
 import { fetchPosts } from "@/services/post.ts";
 import type { Post } from "@/types";
-// import SectionFloor from '@/components/SectionFloor.vue'
-// import Recommendations from '@/components/floors/Recommendations.vue'
 
 const { loadTopCategories, topCategories } = useHomeData()
 

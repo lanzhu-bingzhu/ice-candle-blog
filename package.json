@@ -11,6 +11,7 @@
   "dependencies": {
     "@traptitech/markdown-it-katex": "^3.6.0",
     "@vueuse/core": "^14.3.0",
+    "@vueuse/head": "^0.9.8",
     "@vueuse/motion": "^3.0.3",
     "axios": "^1.17.0",
     "pinia": "^3.0.4",
@@ -18,6 +19,8 @@
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
+    "@iconify/json": "^2.2.515",
+    "@iconify/tailwind4": "^1.2.3",
     "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.1",
     "@types/node": "^24.12.3",

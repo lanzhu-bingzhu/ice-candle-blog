@@ -4,6 +4,7 @@
 @source './src/**/*.{vue,js,ts,jsx,tsx}';
 
 @plugin '@tailwindcss/typography';
+@plugin "@iconify/tailwind4";
 
 @theme {
   --color-ice-50: #f0f9ff;
@@ -358,4 +359,10 @@ code {
   background-size: 0.8rem 1.2em;
   background-repeat: repeat-x;
   background-position: 0 50%;
+}
+
+/* 针对 Iconify 生成的类 */
+[class^="icon-"],
+[class*=" icon-"] {
+  vertical-align: -0.125em;
 }

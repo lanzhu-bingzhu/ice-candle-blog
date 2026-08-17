@@ -8,16 +8,27 @@
           <BreadcrumbNav :items="breadcrumbItem"></BreadcrumbNav>
           <div class="flex p-16">
             <div class="flex-2 border-r-1 border-dark-800/10">
-              <div class="p-16">
-                <h2 class="text-4xl font-bold pb-4 mb-4 border-b">
+              <div class="px-16 py-4">
+                <h2 class="text-5xl font-bold pb-4 mb-4 border-b">
                   <span class="block text-ice-600">Category</span>
                   <span class="block">Directory</span>
                 </h2>
                 <ul>
+                  <template v-if="selectedCategory && 'parent_id' in selectedCategory">
+                    <li class="border-b border-dark/30 p-4">
+                      <router-link :to="selectedCategory.parent_id ? `/catalogue/${selectedCategory.parent_id}` : `/catalogue`">
+                        <p class="w-full indent-4 text-xl text-ice-600 hover:text-ice-800">
+                          <span>
+                            <span class="icon-[material-symbols--arrow-back-ios]"></span> Go back
+                          </span>
+                        </p>
+                      </router-link>
+                    </li>
+                  </template>
                   <template v-for="item in categoryMap">
                     <li class="border-b border-dark/30 p-4">
                       <router-link :to="`/catalogue/${item.category_id}`">
-                        <p class="w-full indent-4 hover:text-ice-900">
+                        <p class="w-full indent-4 text-xl hover:text-ice-800">
                           <span>{{ item.name }}</span>
                         </p>
                       </router-link>
@@ -28,13 +39,14 @@
             </div>
             <div class="flex-5">
               <div class="p-16">
-                <h2 class="text-4xl pb-8">
-                  <span class="font-bold">Posts</span>
-                  <span class="text-3xl" v-if="selectedCategory"> - {{ selectedCategory.name }}</span>
+                <h2 class="text-4xl pb-8 font-bold">
+                  <span>Posts</span>
+                  <span v-if="selectedCategory && 'name' in selectedCategory"> from the <span class="font-normal">{{ selectedCategory.name }}</span> category</span>
+                  <span v-else> all</span>
                 </h2>
                 <ul class="w-full mx-auto px-8">
                   <template v-for="post in posts">
-                    <router-link :to="`/post/${post.post_id}`">
+                    <router-link :to="selectedCategory && 'category_id' in selectedCategory ? `/catalogue/${selectedCategory.category_id}/post/${post.post_id}` : `/post/${post.post_id}`">
                       <li class="group flex border-b border-dark/30 p-4">
                         <div class="flex-1">
                           <p class="text-xl text-dark leading-10 group-hover:text-ice-800">{{ post.title }}</p>
@@ -63,13 +75,14 @@
 <script setup lang="ts">
 import PageHeader from "@/components/PageHeader.vue";
 import Footer from "@/components/Footer.vue";
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, computed } from "vue";
 import { useRoute } from 'vue-router'
 import { fetchCategories, fetchCategoryById } from "@/services/category.ts";
 import { fetchPosts } from "@/services/post.ts";
 import type { Category, Post } from "@/types";
 import { useLoading } from "@/composables/useLoading.ts";
 import BreadcrumbNav from "@/components/BreadcrumbNav.vue";
+import { useHead } from '@vueuse/head'
 
 const route = useRoute()
 
@@ -83,14 +96,28 @@ const params = ref<Record<string, any>>({})
 const postParams = ref<Record<string, any>>({})
 const postLoading = ref(false)
 
+const pageTitle = computed(() => {
+  return selectedCategory.value && 'name' in selectedCategory.value ? `${selectedCategory.value.name} Catalogue - Ice Candle` : 'Catalogue - Ice Candle'
+})
+
+const breadcrumbItemLabel = computed(() => {
+  return selectedCategory.value && 'name' in selectedCategory.value ? `Catalogue - ${selectedCategory.value.name}` : 'Catalogue'
+})
+
+useHead({
+  title: pageTitle
+})
+
 const breadcrumbItem = ref([
   { label: 'Home', to: '/' },
-  { label: 'Catalogue' }
+  { label: breadcrumbItemLabel }
 ])
 
 async function loadData(): Promise<void> {
   if (selectedCategoryId.value) {
     selectedCategory.value = await fetchCategoryById(selectedCategoryId.value)
+  } else {
+    selectedCategory.value = {}
   }
 }
 
@@ -125,21 +152,25 @@ onMounted(() => {
   loadPosts(postParams.value)
 })
 
-watch(() => route.params.categoryId, (newId) => {
-  if (newId) {
-    selectedCategoryId.value = newId as string
+watch(() => route.params, newParams => {
+  categoryMap.value = []
+  posts.value = []
+  selectedCategory.value = {}
+  if (newParams.categoryId) {
+    selectedCategoryId.value = newParams.categoryId as string
     loadData()
     params.value.parent_id = selectedCategoryId.value
     postParams.value.category_id = selectedCategoryId.value
     loadCategories(params.value)
     loadPosts(postParams.value)
   } else {
+    selectedCategoryId.value = ''
     loadData()
     params.value.parent_id = 0
     loadCategories(params.value)
     loadPosts()
   }
-})
+},{ immediate: true })
 </script>
 
 <style scoped>
