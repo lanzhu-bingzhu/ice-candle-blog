@@ -83,7 +83,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import PageHeader from '@/components/PageHeader.vue'
 import Footer from '@/components/Footer.vue'
@@ -92,6 +92,7 @@ import type { Post } from '@/types'
 import { fetchPostById } from "@/services/post.ts";
 import { useLoading } from "@/composables/useLoading.ts";
 import BreadcrumbNav from "@/components/BreadcrumbNav.vue";
+import { useHead } from "@vueuse/head";
 
 const route = useRoute()
 
@@ -100,10 +101,39 @@ const { show, hide } = useLoading()
 const post = ref<Post | null>(null)
 const loading = ref(true)
 
+const pageTitle = computed(() => {
+  return post.value?.title ? `${post.value.title} - Ice Candle` : 'Ice Candle'
+})
+
+const pageDescription = computed(() => {
+  return post.value?.description || post.value?.summary || 'Ice candle - 个人兴趣分享网站，主要分享有关游戏、绘画和编程的个人心得。'
+})
+
+const breadcrumbCatalogueItemLabel = computed(() => {
+  return route.params.categoryId ? `Catalogue - ${route.params.categoryId}` : 'Catalogue'
+})
+
+const breadcrumbCatalogueItemTo = computed(() => {
+  return route.params.categoryId ? `/catalogue/${route.params.categoryId}` : '/catalogue'
+})
+
+const breadcrumbPostItemLabel = computed(() => {
+  return post.value?.title ? `Post - ${post.value.title}` : 'Post'
+})
+
+useHead({
+  title: pageTitle,
+  meta: [
+    { name: 'description', content: pageDescription },
+    { property: 'og:title', content: pageTitle },
+    { property: 'og:description', content: pageDescription },
+  ],
+})
+
 const breadcrumbItem = ref([
   { label: 'Home', to: '/' },
-  { label: 'Catalogue', to: '/catalogue' },
-  { label: 'post' }
+  { label: breadcrumbCatalogueItemLabel, to: breadcrumbCatalogueItemTo },
+  { label: breadcrumbPostItemLabel }
 ])
 
 async function loadPost(postId: string): Promise<void> {
@@ -118,25 +148,8 @@ async function loadPost(postId: string): Promise<void> {
   hide()
 }
 
-function checkBreadcrumbNav(categoryId: string) {
-  if (categoryId) {
-    breadcrumbItem.value = [
-      { label: 'Home', to: '/' },
-      { label: `Catalogue - ${categoryId}`, to: `/catalogue/${categoryId}` },
-      { label: 'post' }
-    ]
-  } else {
-    breadcrumbItem.value = [
-      { label: 'Home', to: '/' },
-      { label: 'Catalogue', to: '/catalogue' },
-      { label: 'post' }
-    ]
-  }
-}
-
 watch(() => route.params, params => {
   loadPost(params.postId as string)
-  checkBreadcrumbNav(params.categoryId as string)
 }, {
   immediate: true
 })

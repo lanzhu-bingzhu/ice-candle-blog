@@ -11,6 +11,7 @@
   "dependencies": {
     "@traptitech/markdown-it-katex": "^3.6.0",
     "@vueuse/core": "^14.3.0",
+    "@vueuse/head": "^0.9.8",
     "@vueuse/motion": "^3.0.3",
     "axios": "^1.17.0",
     "pinia": "^3.0.4",

@@ -40,6 +40,11 @@
 <script setup lang="ts">
 import Footer from '@/components/Footer.vue'
 import PageHeader from '@/components/PageHeader.vue'
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: '内容不存在 - Ice Candle'
+})
 </script>
 
 <style scoped>

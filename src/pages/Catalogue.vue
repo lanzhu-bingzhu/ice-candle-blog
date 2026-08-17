@@ -75,13 +75,14 @@
 <script setup lang="ts">
 import PageHeader from "@/components/PageHeader.vue";
 import Footer from "@/components/Footer.vue";
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted, watch, computed } from "vue";
 import { useRoute } from 'vue-router'
 import { fetchCategories, fetchCategoryById } from "@/services/category.ts";
 import { fetchPosts } from "@/services/post.ts";
 import type { Category, Post } from "@/types";
 import { useLoading } from "@/composables/useLoading.ts";
 import BreadcrumbNav from "@/components/BreadcrumbNav.vue";
+import { useHead } from '@vueuse/head'
 
 const route = useRoute()
 
@@ -95,9 +96,21 @@ const params = ref<Record<string, any>>({})
 const postParams = ref<Record<string, any>>({})
 const postLoading = ref(false)
 
+const pageTitle = computed(() => {
+  return selectedCategory.value && 'name' in selectedCategory.value ? `${selectedCategory.value.name} Catalogue - Ice Candle` : 'Catalogue - Ice Candle'
+})
+
+const breadcrumbItemLabel = computed(() => {
+  return selectedCategory.value && 'name' in selectedCategory.value ? `Catalogue - ${selectedCategory.value.name}` : 'Catalogue'
+})
+
+useHead({
+  title: pageTitle
+})
+
 const breadcrumbItem = ref([
   { label: 'Home', to: '/' },
-  { label: 'Catalogue' }
+  { label: breadcrumbItemLabel }
 ])
 
 async function loadData(): Promise<void> {
@@ -125,20 +138,6 @@ async function loadPosts(params?: Record<string, any>): Promise<void> {
     postLoading.value = false
   } catch (e: any) {
     postLoading.value = false
-  }
-}
-
-function checkBreadcrumbNav() {
-  if (selectedCategoryId.value) {
-    breadcrumbItem.value = [
-      { label: 'Home', to: '/' },
-      { label: `Catalogue - ${selectedCategoryId.value}` }
-    ]
-  } else {
-    breadcrumbItem.value = [
-      { label: 'Home', to: '/' },
-      { label: 'Catalogue' }
-    ]
   }
 }
 
@@ -171,7 +170,6 @@ watch(() => route.params, newParams => {
     loadCategories(params.value)
     loadPosts()
   }
-  checkBreadcrumbNav()
 },{ immediate: true })
 </script>
 
