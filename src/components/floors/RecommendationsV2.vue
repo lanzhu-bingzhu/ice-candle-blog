@@ -6,19 +6,19 @@
           <div class="flex-2 flex h-192">
             <div class="flex-1">
               <div class="w-full h-3/4 overflow-hidden border-4 border-[#f0f7ff]">
-                <img src="/images/miku.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
+                <img :src="config?.recommendations_image[0]" alt="alt" class="w-full h-full object-cover aspect-square" />
               </div>
               <div class="w-full h-1/4 flex">
                 <div class="flex-1 h-full bg-ice-500 border-4 border-[#f0f7ff]"></div>
                 <div class="flex-1 h-full overflow-hidden border-4 border-[#f0f7ff]">
-                  <img src="/images/GUMI.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
+                  <img :src="config?.recommendations_image[1]" alt="alt" class="w-full h-full object-cover aspect-square" />
                 </div>
               </div>
             </div>
             <div class="flex-1">
               <div class="w-full h-1/5 bg-ice-500 border-4 border-[#f0f7ff]"></div>
               <div class="w-full h-3/5 overflow-hidden border-4 border-[#f0f7ff]">
-                <img src="/images/teto.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />
+                <img :src="config?.recommendations_image[2]" alt="alt" class="w-full h-full object-cover aspect-square" />
               </div>
               <div class="w-full h-1/5 bg-candle-400 border-4 border-[#f0f7ff]"></div>
             </div>
@@ -48,6 +48,16 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
+import type { Config } from "@/types";
+
+const props = defineProps<{
+  config?: Config
+}>()
+
+const config = computed(() => {
+  return props.config
+})
 </script>
 
 <style scoped></style>

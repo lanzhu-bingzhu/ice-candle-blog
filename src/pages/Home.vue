@@ -7,7 +7,7 @@
         <div class="w-full">
           <div class="overflow-hidden w-full h-[80dvh] bg-dark-800 flex">
             <div class="flex-1">
-              <img src="/images/header-floor.jpg" alt="alt" class="w-full h-auto object-cover aspect-8/21" />
+              <img :src="config?.header_image" alt="alt" class="w-full h-auto object-cover aspect-8/21" />
             </div>
             <div class="flex-2 ml-[25%] flex items-center justify-center">
               <div>
@@ -29,11 +29,11 @@
         </div>
       </section>
 
-      <ContentNavigation :topCategories="topCategories" />
+      <ContentNavigation :config="config" :topCategories="topCategories" />
 
       <!-- <Recommendations /> -->
 
-      <RecommendationsV2 />
+      <RecommendationsV2 :config="config" />
 
 <!--      <section>-->
 <!--        <div class="container mx-auto">-->
@@ -128,27 +128,24 @@
         <div class="container mx-auto">
           <div class="p-16">
             <div class="w-full flex">
-              <div class="w-full h-auto flex-1">
+              <div class="w-full h-auto flex-1 relative">
                 <div class="w-full h-9/16 flex items-end justify-end p-2">
                   <h2 class="text-right font-bold leading-normal">
                     <span class="text-6xl text-ice-600">Website</span><br/>
                     <span class="text-4xl">Introduction</span>
                   </h2>
                 </div>
-                <div class="w-[150%] h-6/16 bg-ice-600 relative">
-                  <div class="p-16 text-ice-50">
-                    <p>一个记录兴趣爱好和杂事的个人小站。</p>
-                    <p>冰不冷，烛有光。</p>
-                  </div>
+                <div class="w-[440px] h-[330px] bg-ice-600 absolute">
+                  <div class="w-full h-full p-16 text-ice-50 break-words" v-html="config?.introduction_text"></div>
                 </div>
-                <div class="w-full h-1/16">
+                <div class="w-full h-7/16">
                   <div class="w-full h-full flex items-end">
                     <p class="text-sm text-dark/40 leading-normal font-extrabold">ICE CANDLE</p>
                   </div>
                 </div>
               </div>
               <div class="w-full h-full flex-3 overflow-hidden">
-                <img src="/images/footer.jpeg" alt="alt" class="w-full h-full object-cover aspect-square" />
+                <img :src="config?.introduction_image" alt="alt" class="w-full h-full object-cover aspect-square" />
               </div>
             </div>
           </div>
@@ -169,13 +166,15 @@ import ContentNavigation from '@/components/floors/ContentNavigation.vue'
 import RecommendationsV2 from '@/components/floors/RecommendationsV2.vue'
 import Posts from '@/components/floors/Posts.vue'
 import { fetchPosts } from "@/services/post.ts";
-import type { Post } from "@/types";
+import { fetchConfig } from "@/services/config.ts";
+import type { Post, Config } from "@/types";
 
 const { loadTopCategories, topCategories } = useHomeData()
 
 const posts = ref<Post[]>([])
+const config = ref<Config | any>()
 
-async function loadTopCategoryData() {
+async function loadTopCategoryData(): Promise<void> {
   if (topCategories.value.length == 0) {
     await loadTopCategories()
   }
@@ -185,7 +184,12 @@ async function loadPosts(params?: Record<string, any>): Promise<void> {
   posts.value = await fetchPosts(params)
 }
 
+async function loadConfig(): Promise<void> {
+  config.value = await fetchConfig()
+}
+
 onMounted(() => {
+  loadConfig()
   loadTopCategoryData()
   loadPosts()
 })

@@ -76,3 +76,11 @@ export interface FloorConfig {
   alt: string,
   category: Category
 }
+
+export interface Config {
+  header_image: string
+  navigation_image: string
+  recommendations_image: string[]
+  introduction_image: string
+  introduction_text: string
+}

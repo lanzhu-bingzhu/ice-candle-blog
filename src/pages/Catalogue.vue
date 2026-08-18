@@ -46,7 +46,7 @@
                 </h2>
                 <ul class="w-full mx-auto px-8">
                   <template v-for="post in posts">
-                    <router-link :to="selectedCategory && 'category_id' in selectedCategory ? `/catalogue/${selectedCategory.category_id}/post/${post.post_id}` : `/post/${post.post_id}`">
+                    <router-link :to="`/post/${post.post_id}`">
                       <li class="group flex border-b border-dark/30 p-4">
                         <div class="flex-1">
                           <p class="text-xl text-dark leading-10 group-hover:text-ice-800">{{ post.title }}</p>

@@ -45,16 +45,14 @@
 
 <script setup lang="ts">
 import type { Post } from "@/types/index.ts"
-import { ref, watch } from "vue";
+import { computed } from "vue";
 
 const props = defineProps<{
   posts: Array<Post>
 }>()
 
-const posts = ref<Array<Post>>(props.posts)
-
-watch(() => props.posts, () => {
-  posts.value = props.posts
+const posts = computed(() => {
+  return props.posts
 })
 </script>
 
