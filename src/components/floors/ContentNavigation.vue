@@ -30,7 +30,7 @@
         <div class="flex-1">
           <div class="ml-[20%] h-full">
             <div class="w-full h-[50%] bg-ice-500 overflow-hidden">
-              <img src="/images/04.jpg" alt="alt" class="w-full h-auto object-cover aspect-square" />
+              <img :src="config?.navigation_image" alt="alt" class="w-full h-auto object-cover aspect-square" />
             </div>
             <div class="w-full h-[10%] bg-candle-400"></div>
           </div>
@@ -41,17 +41,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from "vue"
-import type { Category } from "@/types/index.ts"
+import { computed } from "vue"
+import type { Category, Config } from "@/types/index.ts"
 
 const props = defineProps<{
+  config?: Config
   topCategories: Array<Category>
 }>()
 
-const topCategories = ref<Array<Category>>(props.topCategories)
+const topCategories = computed(() => {
+  return props.topCategories
+})
 
-watch(() => props.topCategories, () => {
-  topCategories.value = props.topCategories
+const config = computed(() => {
+  return props.config
 })
 </script>
 
