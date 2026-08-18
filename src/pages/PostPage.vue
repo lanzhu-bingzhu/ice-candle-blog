@@ -93,12 +93,14 @@ import { fetchPostById } from "@/services/post.ts";
 import { useLoading } from "@/composables/useLoading.ts";
 import BreadcrumbNav from "@/components/BreadcrumbNav.vue";
 import { useHead } from "@vueuse/head";
+import {fetchCategoryById} from "@/services/category.ts";
 
 const route = useRoute()
 
 const { show, hide } = useLoading()
 
 const post = ref<Post | null>(null)
+const selectedCategory = ref<Record<string, any>>()
 const loading = ref(true)
 
 const pageTitle = computed(() => {
@@ -110,11 +112,11 @@ const pageDescription = computed(() => {
 })
 
 const breadcrumbCatalogueItemLabel = computed(() => {
-  return route.params.categoryId ? `Catalogue - ${route.params.categoryId}` : 'Catalogue'
+  return selectedCategory.value?.name ? `Catalogue - ${selectedCategory.value.name}` : 'Catalogue'
 })
 
 const breadcrumbCatalogueItemTo = computed(() => {
-  return route.params.categoryId ? `/catalogue/${route.params.categoryId}` : '/catalogue'
+  return selectedCategory.value?.category_id ? `/catalogue/${selectedCategory.value.category_id}` : '/catalogue'
 })
 
 const breadcrumbPostItemLabel = computed(() => {
@@ -148,8 +150,21 @@ async function loadPost(postId: string): Promise<void> {
   hide()
 }
 
+async function loadCategoryDetail(categoryId: string): Promise<void> {
+  if (categoryId) {
+    selectedCategory.value = await fetchCategoryById(categoryId)
+  } else {
+    selectedCategory.value = {}
+  }
+}
+
+
 watch(() => route.params, params => {
-  loadPost(params.postId as string)
+  loadPost(params.postId as string).then(() => {
+    if (post.value) {
+      loadCategoryDetail(post.value.category_id as string)
+    }
+  })
 }, {
   immediate: true
 })
