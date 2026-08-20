@@ -25,6 +25,15 @@
                       </router-link>
                     </li>
                   </template>
+                  <template v-else-if="!categoryMap.length">
+                    <li class="border-b border-dark/30 p-4">
+                      <router-link to="/catalogue">
+                        <p class="w-full indent-4 text-xl text-ice-600 hover:text-ice-800">
+                          <span>View all</span>
+                        </p>
+                      </router-link>
+                    </li>
+                  </template>
                   <template v-for="item in categoryMap">
                     <li class="border-b border-dark/30 p-4">
                       <router-link :to="`/catalogue/${item.category_id}`">

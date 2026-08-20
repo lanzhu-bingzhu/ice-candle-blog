@@ -104,7 +104,7 @@ const selectedCategory = ref<Record<string, any>>()
 const loading = ref(true)
 
 const pageTitle = computed(() => {
-  return post.value?.title ? `${post.value.title} - Ice Candle` : 'Ice Candle'
+  return post.value?.title ? `${post.value.title} - Ice Candle` : 'Ice Candle - 个人网站'
 })
 
 const pageDescription = computed(() => {

@@ -13,7 +13,7 @@
               <div>
                 <div class="text-ice-50 p-8 pb-4">
                   <h1 class="text-8xl font-extrabold tracking-widest"><span class="text-ice-600">ICE</span> CANDLE</h1>
-                  <p class="text-2xl font-bold pt-6 tracking-[.9em] pl-[0.25em]">冰烛的个人网站</p>
+                  <h2 class="text-2xl font-bold pt-6 tracking-[.9em] pl-[0.25em]">冰烛的个人网站</h2>
                 </div>
                 <div class="text-2xl text-ice-50/80 p-8">
                   <p>
