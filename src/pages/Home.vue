@@ -35,92 +35,9 @@
 
       <RecommendationsV2 :config="config" />
 
-<!--      <section>-->
-<!--        <div class="container mx-auto">-->
-<!--          <div class="px-16">-->
-<!--            <div class="w-full flex py-16">-->
-<!--              <div class="flex-5 mr-[10%]">-->
-<!--                <div class="pb-8">-->
-<!--                  <h2 class="text-4xl font-bold">Hatsune Miku</h2>-->
-<!--                  <p class="text-dark/40">The best of Hatsune Miku form Ice Candle</p>-->
-<!--                </div>-->
-<!--                <ul class="px-8">-->
-<!--                  <li class="border-b p-4">-->
-<!--                    <p class="text-xl text-dark leading-10">占位内容</p>-->
-<!--                    <p class="text-sm text-dark/70">-->
-<!--                      <span>占位内容</span>-->
-<!--                      <span class="float-right text-dark/40 hover:text-ice-600/70">-->
-<!--                        <a href="">查看</a>-->
-<!--                      </span>-->
-<!--                    </p>-->
-<!--                  </li>-->
-<!--                </ul>-->
-<!--              </div>-->
-<!--              <div class="flex-7 overflow-hidden bg-ice-600">-->
-<!--                <img src="/images/miku.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </section>-->
-<!--      -->
-<!--      <section>-->
-<!--        <div class="container mx-auto">-->
-<!--          <div class="px-16">-->
-<!--            <div class="w-full flex py-16">-->
-<!--              <div class="flex-7 overflow-hidden bg-candle-500">-->
-<!--                <img src="/images/teto.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />-->
-<!--              </div>-->
-<!--              <div class="flex-5 ml-[10%]">-->
-<!--                <div class="text-right pb-8">-->
-<!--                  <h2 class="text-4xl font-bold">Kasane Teto</h2>-->
-<!--                  <p class="text-dark/40">The best of Kasane Teto form Ice Candle</p>-->
-<!--                </div>-->
-<!--                <ul class="w-full px-8 float-right">-->
-<!--                  <li class="border-b p-4">-->
-<!--                    <p class="text-xl text-dark leading-10">占位内容</p>-->
-<!--                    <p class="text-sm text-dark/70">-->
-<!--                      <span>占位内容</span>-->
-<!--                      <span class="float-right text-dark/40 hover:text-ice-600/70">-->
-<!--                        <a href="">查看</a>-->
-<!--                      </span>-->
-<!--                    </p>-->
-<!--                  </li>-->
-<!--                </ul>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </section>-->
-
-<!--      <section>-->
-<!--        <div class="container mx-auto">-->
-<!--          <div class="px-16">-->
-<!--            <div class="w-full flex py-16">-->
-<!--              <div class="flex-5 mr-[10%]">-->
-<!--                <div class="pb-8">-->
-<!--                  <h2 class="text-4xl font-bold">GUMI</h2>-->
-<!--                  <p class="text-dark/40">The best of GUMI form Ice Candle</p>-->
-<!--                </div>-->
-<!--                <ul class="full px-8">-->
-<!--                  <li class="border-b p-4">-->
-<!--                    <p class="text-xl text-dark leading-10">占位内容</p>-->
-<!--                    <p class="text-sm text-dark/70">-->
-<!--                      <span>占位内容</span>-->
-<!--                      <span class="float-right text-dark/40 hover:text-ice-600/70">-->
-<!--                        <a href="">查看</a>-->
-<!--                      </span>-->
-<!--                    </p>-->
-<!--                  </li>-->
-<!--                </ul>-->
-<!--              </div>-->
-<!--              <div class="flex-7 overflow-hidden bg-ice-600">-->
-<!--                <img src="/images/GUMI.jpg" alt="alt" class="w-full h-full object-cover aspect-square" />-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </section>-->
+      <template v-for="item in config?.recommendations_content">
+        <RecommendationsContent :content="item"></RecommendationsContent>
+      </template>
 
       <Posts :posts="posts" />
 
@@ -168,6 +85,7 @@ import Posts from '@/components/floors/Posts.vue'
 import { fetchPosts } from "@/services/post.ts";
 import { fetchConfig } from "@/services/config.ts";
 import type { Post, Config } from "@/types";
+import RecommendationsContent from "@/components/floors/RecommendationsContent.vue";
 
 const { loadTopCategories, topCategories } = useHomeData()
 

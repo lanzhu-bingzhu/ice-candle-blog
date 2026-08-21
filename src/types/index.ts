@@ -81,6 +81,12 @@ export interface Config {
   header_image: string
   navigation_image: string
   recommendations_image: string[]
+  recommendations_content: {
+    title: string
+    description: string
+    image: string
+    link: string
+  }[]
   introduction_image: string
   introduction_text: string
 }
